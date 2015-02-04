@@ -1,4 +1,4 @@
-
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+/*Meteor.publish('allDishes', function()
+  {
+    return Dishes.find({});
+  });*/

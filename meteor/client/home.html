@@ -1,0 +1,44 @@
+<template name="home">
+	<div style="background:#f1f1f1;">
+	<br/>
+	<br/>
+	<br/>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+			<br/>
+			{{#each dish}}
+			<div class="col-md-4 col-md-offset-0 col-xs-10 col-xs-offset-1">
+			{{>dishThumbnail}}
+		</div>
+			{{else}}
+			<h3>Ningun platillo</h3>
+			{{/each}}
+		</div>
+	</div>
+</div>
+</template>
+
+<template name="dishThumbnail">
+<div class="thumbnail" style="z-index: 5; -webkit-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
+-moz-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
+box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);">
+		<a target="_newtab" class="companyLink" href="#">
+			<img class="img-responsive" width="100%" style="height: 235px;" src="full.jpg">
+		</a>
+	<span class="thumbText " style="display:inline-block;">
+		<h4 class="text-center">
+			Nombre de platillo
+		</h4>
+		<span>
+	<a target="_newtab" class="companyLink" href="#">
+		<div class="box">
+		<div class="text">
+		<h5 style="margin: 8px; font-size:16px;" class="text-justify">De: asdf Para:adaf</h5>
+	</div>
+</div>
+</a>
+</span>
+	</span>
+</div>
+
+</template>

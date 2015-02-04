@@ -14,7 +14,8 @@ Images = new FS.Collection("images", {
 
   Router.map(function() {
   this.route('pitch', {path:'/'});
-  this.route('home', {path:'/home'})
+  this.route('home', {path:'/home'});
+  this.route('newFeedthank', {path:'/new'});
   this.route('newCostumer', {path: '/registro'});
   }
   );

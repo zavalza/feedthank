@@ -1,0 +1,100 @@
+<template name="newFeedthank">
+  <div style="background:#f1f1f1;">
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <div class="row">
+  <div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title text-center">Nueva dedicatoria</h3>
+    </div>
+    <div class="panel-body">
+      <form class="form col-md-10 col-md-offset-1 " name="editCompany">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2 col-md-offset-5 col-xs-4 col-xs-offset-4">
+              {{#each image logo}}
+              <a href="#">
+                <span class="badge pull-right deleteLogo">x</span>
+                <img class="img-responsive" src="{{url}}">
+              </a>
+              {{else}}
+              <a href="#">
+                <img id="cover" class="img-responsive" src="photo.png">
+              </a>
+              {{/each}}
+            </div>
+          </div>
+              <input class="hidden" type="file" id="logo"><br>
+              <h1 class="text-center">El título de mi dedicatoria</h1>
+          <div class="row">
+            <div class="col-md-6 ">
+              <h3><label>De:&nbsp;</label></h3>
+            </div>
+            <div class="col-md-6 ">
+              <h3><label>Para:&nbsp; <span class="badge pull-right">+</span></label></h3>
+              <input type="text" class="form-control hidden" id="name" placeholder="Nombre">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10">
+              <h3><label>¿Por qué te dedico este platillo?</label></h3>
+              <div class="col-md-10">
+              <textarea class="form-control" id="highConcept" placeholder="Describe la compañía en menos de 10 palabras"></textarea>
+              </div>
+             <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
+              {{#each image logo}}
+              <a href="#">
+                <span class="badge pull-right deleteLogo">x</span>
+                <img class="img-responsive" src="{{url}}">
+              </a>
+              {{else}}
+              <a href="#">
+                <img id="cover" class="img-responsive" src="photo.png">
+              </a>
+              {{/each}}
+            </div>
+              <div class="col-xs-12">
+              <a href="#">+ Añadir texto/imagen</a>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10">
+              <h3><label>Este platillo es especial porque...</label></h3>
+              <div class="col-md-10">
+              <textarea class="form-control" id="highConcept"  placeholder="Describe la compañía en menos de 10 palabras"></textarea>
+              </div>
+             <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
+              {{#each image logo}}
+              <a href="#">
+                <span class="badge pull-right deleteLogo">x</span>
+                <img class="img-responsive" src="{{url}}">
+              </a>
+              {{else}}
+              <a href="#">
+                <img id="cover" class="img-responsive" src="photo.png">
+              </a>
+              {{/each}}
+            </div>
+            <div class="col-xs-12">
+              <a href="#">+ Añadir texto/imagen</a>
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            <ul class="pager">
+               <a class="btn btn-lg btn-danger cancel">Cancelar</a>
+              <a class="btn btn-lg btn-default save">Enviar</a>
+            </ul>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</template>

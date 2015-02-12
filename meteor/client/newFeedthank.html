@@ -42,7 +42,7 @@
             <div class="col-md-10">
               <h3><label>¿Por qué te dedico este platillo?</label></h3>
               <div class="col-md-10">
-              <textarea class="form-control" id="highConcept" placeholder="Describe la compañía en menos de 10 palabras"></textarea>
+              <textarea class="form-control" id="highConcept" placeholder="Una razón, un momento, un festejo, ¿por qué tu invitado es especial?"></textarea>
               </div>
              <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
               {{#each image logo}}
@@ -65,7 +65,7 @@
             <div class="col-md-10">
               <h3><label>Este platillo es especial porque...</label></h3>
               <div class="col-md-10">
-              <textarea class="form-control" id="highConcept"  placeholder="Describe la compañía en menos de 10 palabras"></textarea>
+              <textarea class="form-control" id="highConcept"  placeholder="Una historia, un ingrediente especial, un esfuerzo único ¿Qué dice tu platillo de ti?"></textarea>
               </div>
              <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
               {{#each image logo}}
@@ -84,10 +84,26 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h3><label>Comeremos juntos el... </label></h3>
+            <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" placeholder="Fecha y hora. Da click al icono."/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h3><label>Te espero aquí </label></h3>
+            <input type="text" class="form-control" id="place" placeholder="Nombre del lugar">
+          </div>
+        </div>
           <div class="row">
             <ul class="pager">
-               <a class="btn btn-lg btn-danger cancel">Cancelar</a>
-              <a class="btn btn-lg btn-default save">Enviar</a>
+               <a class="btn btn-lg btn-info cancel">Guardar</a>
+              <a class="btn btn-lg btn-success save">Publicar</a>
             </ul>
           </div>
         </div>

@@ -13,3 +13,4 @@ if(window.location.hostname.search('www') != -1)
       Router.go('newCostumer');
     }
   });
+

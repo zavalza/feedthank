@@ -1,3 +1,14 @@
+Template.newFeedthank.rendered = function()
+{
+  //datimepicker package
+  $('.date').datetimepicker({ sideBySide: true});
+  //Show all placeholders
+  $("textarea").each(function(){
+        $(this).focus();
+        $(this).blur();
+    });
+}
+
 Template.newFeedthank.events({
 
  'change #logo' : function(evt, tmpl) {

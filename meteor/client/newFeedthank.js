@@ -2,7 +2,12 @@ Template.newFeedthank.rendered = function()
 {
   //datimepicker package
   $('.date').datetimepicker({ sideBySide: true});
-  //Show all placeholders
+
+}
+
+Template.reason.rendered = function()
+{
+    //Show all placeholders
   $("textarea").each(function(){
         $(this).focus();
         $(this).blur();
@@ -29,6 +34,13 @@ Template.newFeedthank.events({
         //alert(encontrada._id)
       }   
     });
+  },
+
+  'click .newReason' : function(evt, tmpl){
+ 
+    var reasonsArray = Session.get('reasons');
+    reasonsArray.push('');
+    Session.set('reasons', reasonsArray);
   },
 
 'click #cover' : function(evt, tmpl){
@@ -108,7 +120,26 @@ Template.newFeedthank.events({
         },
     });
 
+    Template.reason.helpers({
+      image: function(ids)
+        {
+          if (typeof (ids) == 'object')
+          return Images.find({_id:{$in: ids}});
+          else
+          {
+            //alert(typeof (ids)) string
+            return Images.find({_id:ids})
+          }
+          
+        },
+    })
+
 Template.newFeedthank.logo =function()
 {
   return Session.get('logo');
+}
+
+Template.newFeedthank.reasons = function()
+{
+  return Session.get('reasons');
 }

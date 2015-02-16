@@ -1,4 +1,7 @@
-/*Meteor.publish('allDishes', function()
-  {
-    return Dishes.find({});
-  });*/
+
+Meteor.methods({
+	newFeedthank:function(){
+		var id = Feedthanks.insert({});
+		return id;
+	}
+})

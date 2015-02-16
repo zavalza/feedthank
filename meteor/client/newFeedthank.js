@@ -1,4 +1,4 @@
-Template.newFeedthank.rendered = function()
+Template.editFeedthank.rendered = function()
 {
   //datimepicker package
   $('.date').datetimepicker({ sideBySide: true});
@@ -23,7 +23,7 @@ Template.meaning.rendered = function()
     });
 }
 
-Template.newFeedthank.events({
+Template.editFeedthank.events({
 
  'change #logo' : function(evt, tmpl) {
     var error = false;
@@ -121,7 +121,7 @@ Template.newFeedthank.events({
   });
 
 
-    Template.newFeedthank.helpers ({
+    Template.editFeedthank.helpers ({
        
         image: function(ids)
         {
@@ -164,17 +164,17 @@ Template.newFeedthank.events({
         },
     })
 
-Template.newFeedthank.logo =function()
+Template.editFeedthank.logo =function()
 {
   return Session.get('logo');
 }
 
-Template.newFeedthank.reasons = function()
+Template.editFeedthank.reasons = function()
 {
   return Session.get('reasons');
 }
 
-Template.newFeedthank.meanings = function()
+Template.editFeedthank.meanings = function()
 {
   return Session.get('meanings');
 }

@@ -5,6 +5,7 @@ if(window.location.hostname.search('www') != -1)
 //Meteor.subscribe("allDishes");
 Session.set('reasons', ['']);
 Session.set('meanings', ['']);
+Session.set('currentFeedthank', null);
 });
 
 

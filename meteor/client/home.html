@@ -6,9 +6,9 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
 			<br/>
-			{{#each dish}}
+			{{#each feedthank}}
 			<div class="col-md-3 col-md-offset-0 col-xs-10 col-xs-offset-1">
-			{{>dishThumbnail}}
+			{{>feedthankThumbnail}}
 		</div>
 			{{else}}
 			<h3>Ningun platillo</h3>
@@ -18,7 +18,7 @@
 </div>
 </template>
 
-<template name="dishThumbnail">
+<template name="feedthankThumbnail">
 <div class="thumbnail" style="z-index: 5; -webkit-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
 -moz-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
 box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);">

@@ -1,8 +1,8 @@
 
  Template.home.helpers({
-  dish: function()
+  feedthank: function()
   {
-    return Dishes.find({});
+    return Feedthanks.find({});
   },
 
   image: function(ids)
@@ -20,7 +20,7 @@
 
  })
 
-Template.dishThumbnail.rendered = function()
+Template.feedthankThumbnail.rendered = function()
  {
 
   var maxHeight = 0;
@@ -38,7 +38,7 @@ Template.dishThumbnail.rendered = function()
 }
 
 
-Template.dishThumbnail.helpers({
+Template.feedthankThumbnail.helpers({
 
 
     image: function(ids)

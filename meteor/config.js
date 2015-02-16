@@ -1,5 +1,5 @@
   //MongoDB
-Dishes = new Meteor.Collection("dishes");
+Feedthanks = new Meteor.Collection("dishes");
 
 //File Storage in MongoDb using FS
 var imageStore = new FS.Store.GridFS("images");
@@ -15,7 +15,11 @@ Images = new FS.Collection("images", {
   Router.map(function() {
   this.route('pitch', {path:'/'});
   this.route('home', {path:'/home'});
-  this.route('newFeedthank', {path:'/new'});
+  this.route('editFeedthank', {path:'/edit', data:function(){
+
+    var currentFeedthank = Session.get('currentFeedthank');
+   return Feedthanks.findOne({_id:currentFeedthank});
+    }});
   this.route('newCostumer', {path: '/registro'});
   }
   );

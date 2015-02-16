@@ -28,7 +28,7 @@
             </div>
           </div>
               <input class="hidden" type="file" id="logo"><br>
-              <h1 class="text-center">El título de mi dedicatoria</h1>
+              <input type="text" class="form-control text-center" id="title" placeholder="El título de mi dedicatoria">
           <div class="row">
             <div class="col-md-6 ">
               <h3><label>De:&nbsp;</label></h3>
@@ -52,23 +52,12 @@
           <div class="row">
             <div class="col-md-10">
               <h3><label>Este platillo es especial porque...</label></h3>
-              <div class="col-md-10">
-              <textarea class="form-control" id="highConcept"  placeholder="Una historia, un ingrediente especial, un esfuerzo único ¿Qué dice tu platillo de ti?"></textarea>
-              </div>
-             <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
-              {{#each image logo}}
-              <a href="#">
-                <span class="badge pull-right deleteLogo">x</span>
-                <img class="img-responsive" src="{{url}}">
-              </a>
-              {{else}}
-              <a href="#">
-                <img id="cover" class="img-responsive" src="photo.png">
-              </a>
+              {{#each meanings}}
+                {{>meaning}}
               {{/each}}
-            </div>
+             
             <div class="col-xs-12">
-              <a href="#">+ Añadir texto/imagen</a>
+              <a href="#" class="newMeaning">+ Añadir texto/imagen</a>
             </div>
           </div>
         </div>
@@ -105,7 +94,8 @@
 
 <template name="reason">
 <div class="col-md-10">
-              <textarea class="form-control" id="highConcept" placeholder="Una razón, un momento, un festejo, ¿por qué tu invitado es especial?"></textarea>
+              <textarea class="form-control" id="highConcept" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?"></textarea>
+              <br/>
               </div>
              <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
               {{#each image logo}}
@@ -118,5 +108,25 @@
                 <img id="cover" class="img-responsive" src="photo.png">
               </a>
               {{/each}}
+            </div>
+</template>
+
+<template name="meaning">
+ <div class="col-md-10">
+              <textarea class="form-control" id="highConcept"  placeholder="Una historia, un ingrediente especial, un esfuerzo único ¿Qué hace diferente a este platillo?"></textarea>
+              <br/>
+              </div>
+             <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
+              {{#each image logo}}
+              <a href="#">
+                <span class="badge pull-right deleteLogo">x</span>
+                <img class="img-responsive" src="{{url}}">
+              </a>
+              {{else}}
+              <a href="#">
+                <img id="cover" class="img-responsive" src="photo.png">
+              </a>
+              {{/each}}
+            
             </div>
 </template>

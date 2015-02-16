@@ -14,6 +14,15 @@ Template.reason.rendered = function()
     });
 }
 
+Template.meaning.rendered = function()
+{
+    //Show all placeholders
+  $("textarea").each(function(){
+        $(this).focus();
+        $(this).blur();
+    });
+}
+
 Template.newFeedthank.events({
 
  'change #logo' : function(evt, tmpl) {
@@ -41,6 +50,13 @@ Template.newFeedthank.events({
     var reasonsArray = Session.get('reasons');
     reasonsArray.push('');
     Session.set('reasons', reasonsArray);
+  },
+
+  'click .newMeaning' : function(evt, tmpl){
+ 
+    var meaningsArray = Session.get('meanings');
+    meaningsArray.push('');
+    Session.set('meanings', meaningsArray);
   },
 
 'click #cover' : function(evt, tmpl){
@@ -134,6 +150,20 @@ Template.newFeedthank.events({
         },
     })
 
+    Template.meaning.helpers({
+      image: function(ids)
+        {
+          if (typeof (ids) == 'object')
+          return Images.find({_id:{$in: ids}});
+          else
+          {
+            //alert(typeof (ids)) string
+            return Images.find({_id:ids})
+          }
+          
+        },
+    })
+
 Template.newFeedthank.logo =function()
 {
   return Session.get('logo');
@@ -142,4 +172,9 @@ Template.newFeedthank.logo =function()
 Template.newFeedthank.reasons = function()
 {
   return Session.get('reasons');
+}
+
+Template.newFeedthank.meanings = function()
+{
+  return Session.get('meanings');
 }

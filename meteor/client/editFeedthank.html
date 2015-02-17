@@ -11,24 +11,24 @@
       <h3 class="panel-title text-center">Edita tu dedicatoria {{_id}}</h3>
     </div>
     <div class="panel-body">
-      <form class="form col-md-10 col-md-offset-1 " name="editCompany">
+      <form class="form col-md-10 col-md-offset-1 ">
         <div class="form-group">
           <div class="row">
-            <div class="col-md-2 col-md-offset-5 col-xs-4 col-xs-offset-4">
-              {{#each image logo}}
+            <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+               <img id="waitCover" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
+              {{#each image cover}}
               <a href="#">
-                <span class="badge pull-right deleteLogo">x</span>
-                <img class="img-responsive" src="{{url}}">
+                <img id="coverImgInput" class="img-responsive" src="{{url}}">
               </a>
               {{else}}
               <a href="#">
-                <img id="cover" class="img-responsive" src="photo.png">
+                <img id="coverImgInput" class="img-responsive" src="photo.png">
               </a>
               {{/each}}
             </div>
           </div>
-              <input class="hidden" type="file" id="logo"><br>
-              <input type="text" class="form-control text-center" id="title" placeholder="El título de mi dedicatoria">
+              <input class="hidden" type="file" id="cover" name="{{_id}}"><br>
+              <input type="text" class="form-control text-center" id="title" placeholder="El título de mi dedicatoria" value={{title}}>
           <div class="row">
             <div class="col-md-6 ">
               <h3><label>De:&nbsp;</label></h3>
@@ -94,7 +94,7 @@
 
 <template name="reason">
 <div class="col-md-10">
-              <textarea class="form-control" id="highConcept" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?"></textarea>
+              <textarea class="form-control" id="reason" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?"></textarea>
               <br/>
               </div>
              <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
@@ -105,10 +105,11 @@
               </a>
               {{else}}
               <a href="#">
-                <img id="cover" class="img-responsive" src="photo.png">
+                <img id="reasonImgInput" class="img-responsive" src="photo.png">
               </a>
               {{/each}}
             </div>
+            <input class="hidden" type="file" id="reasonImg">
 </template>
 
 <template name="meaning">
@@ -124,9 +125,16 @@
               </a>
               {{else}}
               <a href="#">
-                <img id="cover" class="img-responsive" src="photo.png">
+                <img id="meaningImgInput" class="img-responsive" src="photo.png">
               </a>
               {{/each}}
-            
             </div>
+            <input class="hidden" type="file" id="meaningImgInput">
 </template>
+
+<!--div class="input-append date">
+    <input value="dd-mm-yyyy" disabled>
+    <span class="add-on btn"><span class="glyphicon glyphicon-calendar"></span></span>
+</div>
+
+google maps api para input de lugar-->

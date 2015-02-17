@@ -6,6 +6,7 @@ if(window.location.hostname.search('www') != -1)
 Session.set('reasons', ['']);
 Session.set('meanings', ['']);
 Session.set('currentFeedthank', null);
+Session.set('cover', null);
 });
 
 

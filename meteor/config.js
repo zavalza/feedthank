@@ -1,5 +1,5 @@
   //MongoDB
-Feedthanks = new Meteor.Collection("dishes");
+Feedthanks = new Meteor.Collection("feedthanks");
 
 //File Storage in MongoDb using FS
 var imageStore = new FS.Store.GridFS("images");

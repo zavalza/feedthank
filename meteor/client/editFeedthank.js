@@ -25,7 +25,15 @@ Template.meaning.rendered = function()
 
 Template.editFeedthank.events({
 
- 'change #logo' : function(evt, tmpl) {
+ 'change #cover' : function(evt, tmpl) {
+    document.getElementById('waitCover').style.visibility='visible';
+    document.getElementById('waitCover').style.height='100px';
+    var feedthankId = document.getElementById('cover').name;
+    if(Session.get('cover')) //has already uploaded a image, delete it
+    {
+      Meteor.call('deleteCover',feedthankId, Session.get('cover'));
+    }
+    //upload new Image   
     var error = false;
     FS.Utility.eachFile(evt, function(file) {
       im = Images.insert(file, function (err, fileObj) {
@@ -38,12 +46,24 @@ Template.editFeedthank.events({
       {
 
         //alert(EJSON.stringify(im));
-       Session.set('logo', im._id);
-        //var encontrada = Images.findOne({_id : im._id});
-        //alert(encontrada._id)
+        //Show it
+        Session.set('cover', im._id);
+        //update db
+        Meteor.call('updateCover', feedthankId, im._id);
       }   
     });
   },
+
+  'load #coverImgInput':function(evt, tmpl){
+    document.getElementById('waitCover').style.height='0px';
+     document.getElementById('waitCover').style.visibility='hidden';
+  },
+
+  'change #title' : function(evt, tmpl){
+    var newTitle = document.getElementById('title').value;
+    Meteor.call('updateTitle', this._id, newTitle);
+  },
+
 
   'click .newReason' : function(evt, tmpl){
  
@@ -59,8 +79,16 @@ Template.editFeedthank.events({
     Session.set('meanings', meaningsArray);
   },
 
-'click #cover' : function(evt, tmpl){
-  document.getElementById('logo').click();
+  'click #coverImgInput' : function(evt, tmpl){
+  document.getElementById('cover').click();
+},
+
+'click #reasonImgInput' : function(evt, tmpl){
+  document.getElementById('reasonImg').click();
+},
+
+'click #meaningImgInput' : function(evt, tmpl){
+  document.getElementById('meaningImg').click();
 },
 
 'click .deleteLogo': function(evt, tmpl){
@@ -164,9 +192,9 @@ Template.editFeedthank.events({
         },
     })
 
-Template.editFeedthank.logo =function()
+Template.editFeedthank.cover =function()
 {
-  return Session.get('logo');
+  return Session.get('cover');
 }
 
 Template.editFeedthank.reasons = function()

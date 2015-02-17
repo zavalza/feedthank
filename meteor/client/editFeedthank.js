@@ -1,6 +1,5 @@
 Template.editFeedthank.rendered = function()
 {
-  Session.set('reasonsInSession', ['']);
 
   //datimepicker package
   var picker = $('.date').datetimepicker({ sideBySide: true});
@@ -69,7 +68,6 @@ Template.editFeedthank.events({
         arrayOfReasons.push({'text':text});
     }
     var feedthankId = document.getElementById('cover').name;
-    Session.set('reasonsInSession', arrayOfReasons);
     Meteor.call('updateReasons', feedthankId, arrayOfReasons);
   },
 
@@ -90,10 +88,8 @@ Template.editFeedthank.events({
 
 
   'click .newReason' : function(evt, tmpl){
- 
-    var reasonsArray = Session.get('reasonsInSession');
-    reasonsArray.push('');
-    Session.set('reasonsInSession', reasonsArray);
+    var feedthankId = document.getElementById('cover').name;
+    Meteor.call('addReason', feedthankId);
   },
 
   'click .newMeaning' : function(evt, tmpl){
@@ -219,11 +215,6 @@ Template.editFeedthank.events({
 Template.editFeedthank.cover =function()
 {
   return Session.get('cover');
-}
-
-Template.editFeedthank.reasonsInSession = function()
-{
-  return Session.get('reasonsInSession');
 }
 
 Template.editFeedthank.meanings = function()

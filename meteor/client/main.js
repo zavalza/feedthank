@@ -3,7 +3,6 @@ Meteor.startup(function () {
 if(window.location.hostname.search('www') != -1)
   window.location.assign("http://feedthank.com");
 //Meteor.subscribe("allDishes");
-Session.set('reasonsInSession', ['']);
 Session.set('meanings', ['']);
 Session.set('currentFeedthank', null);
 Session.set('cover', null);

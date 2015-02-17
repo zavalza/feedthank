@@ -1,7 +1,7 @@
 
 Meteor.methods({
 	newFeedthank:function(){
-		var id = Feedthanks.insert({});
+		var id = Feedthanks.insert({'reasons':[{}]});
 		return id;
 	},
 
@@ -13,6 +13,11 @@ Meteor.methods({
 	updateCover:function(id, imgId){
 		console.log('cover of feedthank + '+id+' has id: '+imgId);
 		Feedthanks.update({_id:id},{$set:{'cover':imgId}});
+	},
+
+	addReason:function(id){
+		console.log('adding reason to feedthank '+id);
+		Feedthanks.update({_id:id},{$push:{'reasons':{}}});
 	},
 
 	updateReasons:function(id, arrayOfReasons){

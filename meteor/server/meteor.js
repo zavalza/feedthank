@@ -15,6 +15,16 @@ Meteor.methods({
 		Feedthanks.update({_id:id},{$set:{'cover':imgId}});
 	},
 
+	updateReasons:function(id, arrayOfReasons){
+		console.log('updating reasons of feedthank '+id);
+		Feedthanks.update({_id:id},{$set:{'reasons':arrayOfReasons}})
+	},
+
+	updateWhen:function(id, newWhen){
+		console.log('update when of '+id +' to '+newWhen);
+		Feedthanks.update({_id:id},{$set:{'when':newWhen}});
+	},
+
 	deleteCover:function(id, imgId){
 		console.log('Deleting cover '+ imgId + ' from feedthank '+id);
 		Feedthanks.update({_id:id},{$set:{'cover':null}});

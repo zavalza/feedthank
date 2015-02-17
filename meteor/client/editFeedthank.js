@@ -1,7 +1,13 @@
 Template.editFeedthank.rendered = function()
 {
+  Session.set('reasonsInSession', ['']);
+
   //datimepicker package
-  $('.date').datetimepicker({ sideBySide: true});
+  var picker = $('.date').datetimepicker({ sideBySide: true});
+  picker.on('change', function(e){
+    var feedthankId = document.getElementById('cover').name;
+       Meteor.call('updateWhen', feedthankId, document.getElementById('when').value )
+    });
 
 }
 
@@ -54,6 +60,19 @@ Template.editFeedthank.events({
     });
   },
 
+  'change .reason':function(evt, tmpl){
+    var texts = document.getElementsByName('reasonText');
+    var arrayOfReasons = [];
+    for(i = 0; i < texts.length; i++)
+    {
+      var text = texts[i].value;
+        arrayOfReasons.push({'text':text});
+    }
+    var feedthankId = document.getElementById('cover').name;
+    Session.set('reasonsInSession', arrayOfReasons);
+    Meteor.call('updateReasons', feedthankId, arrayOfReasons);
+  },
+
   'load #coverImgInput':function(evt, tmpl){
     document.getElementById('waitCover').style.height='0px';
      document.getElementById('waitCover').style.visibility='hidden';
@@ -64,12 +83,17 @@ Template.editFeedthank.events({
     Meteor.call('updateTitle', this._id, newTitle);
   },
 
+  /*'blur #when' : function(evt, tmpl){
+    var newWhen = document.getElementById('when').value;
+    alert(newWhen);
+  },*/
+
 
   'click .newReason' : function(evt, tmpl){
  
-    var reasonsArray = Session.get('reasons');
+    var reasonsArray = Session.get('reasonsInSession');
     reasonsArray.push('');
-    Session.set('reasons', reasonsArray);
+    Session.set('reasonsInSession', reasonsArray);
   },
 
   'click .newMeaning' : function(evt, tmpl){
@@ -197,9 +221,9 @@ Template.editFeedthank.cover =function()
   return Session.get('cover');
 }
 
-Template.editFeedthank.reasons = function()
+Template.editFeedthank.reasonsInSession = function()
 {
-  return Session.get('reasons');
+  return Session.get('reasonsInSession');
 }
 
 Template.editFeedthank.meanings = function()

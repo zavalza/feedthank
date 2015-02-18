@@ -4,7 +4,8 @@ if(window.location.hostname.search('www') != -1)
   window.location.assign("http://feedthank.com");
 //Meteor.subscribe("allDishes");
 Session.set('meanings', ['']);
-Session.set('arrayOfImgIds',[])
+Session.set('arrayOfImgIds',[]);
+Session.set('arrayOfMeaningImg',[]);
 Session.set('currentFeedthank', null);
 Session.set('cover', null);
 });

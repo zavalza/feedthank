@@ -1,7 +1,7 @@
 
 Meteor.methods({
 	newFeedthank:function(){
-		var id = Feedthanks.insert({'reasons':[{}]});
+		var id = Feedthanks.insert({'reasons':[{}],'meanings':[{}]});
 		return id;
 	},
 
@@ -20,9 +20,19 @@ Meteor.methods({
 		Feedthanks.update({_id:id},{$push:{'reasons':{}}});
 	},
 
+	addMeaning:function(id){
+		console.log('adding meaning to feedthank '+id);
+		Feedthanks.update({_id:id},{$push:{'meanings':{}}});
+	},
+
 	updateReasons:function(id, arrayOfReasons){
 		console.log('updating reasons of feedthank '+id);
 		Feedthanks.update({_id:id},{$set:{'reasons':arrayOfReasons}})
+	},
+
+	updateMeanings:function(id, arrayOfMeanings){
+		console.log('updating meanings of feedthank '+id);
+		Feedthanks.update({_id:id},{$set:{'meanings':arrayOfMeanings}})
 	},
 
 	updateWhen:function(id, newWhen){
@@ -34,6 +44,11 @@ Meteor.methods({
 		console.log('Deleting cover '+ imgId + ' from feedthank '+id);
 		Feedthanks.update({_id:id},{$set:{'cover':null}});
 		Images.remove({_id: imgId});
+	},
+
+	publishFeedthank:function(id){
+		console.log('making public feedthank '+id);
+		Feedthanks.update({_id:id},{$set:{'isPublic':true}})
 	}
 	
 })

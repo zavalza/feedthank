@@ -1,5 +1,8 @@
 Template.editFeedthank.rendered = function()
 {
+  //hide edite from other users? make isPublic:false
+
+
 
   //datimepicker package
   var picker = $('.date').datetimepicker({ sideBySide: true});
@@ -80,73 +83,28 @@ Template.editFeedthank.events({
   },
 
   'click .newMeaning' : function(evt, tmpl){
- 
-    var meaningsArray = Session.get('meanings');
-    meaningsArray.push('');
-    Session.set('meanings', meaningsArray);
+    var feedthankId = document.getElementById('cover').name;
+     Meteor.call('addMeaning', feedthankId);
+    var arrayOfMeaningImg = Session.get('arrayOfMeaningImg');
+    arrayOfMeaningImg.push(null);
+    Session.set('arrayOfMeaningImg', arrayOfMeaningImg);
   },
 
   'click #coverImgInput' : function(evt, tmpl){
   document.getElementById('cover').click();
 },
 
-'click #meaningImgInput' : function(evt, tmpl){
-  document.getElementById('meaningImg').click();
-},
-
-'click .deleteLogo': function(evt, tmpl){
-  //alert(this._id)
-
-  Meteor.call('deleteCompanyLogo', Session.get('url'), this._id);
-},
-
-'click .cancel':function(evt, tmpl)
+    'click .publish': function(evt, tmpl)
     {
-      window.history.back();
-    },
-    'click .save': function(evt, tmpl)
-    {
-      //alert('salvar');
-      /*
-      var name= tmpl.find('#name').value;
-      var highConcept = tmpl.find('#highConcept').value;
-      var website = tmpl.find('#company_url').value;
-      var logo = Session.get('logo');
-      
-      
-     
-      if(name.length==0 || highConcept.length == 0 || website.length ==0)
-      {
-        alert ('Por favor llena todos los campos');
-        return false;
-      }
-     var newStartup={
-                      types: ["Startup"], //startup, incubator, accelerator, cowork etc.
-                      name:name,
-                      url:null,
-                      logo:logo, //id of logo image
-                      description:"",
-                      highConcept:highConcept,
-                      company_url:website,
-                      fb_url:"",
-                      twitter_url:"",
-                      tag_ids:[],
-                      video_url:"",
-                      screenshots:[],
-                      team:[],
-                      followers:{count:0, user_ids:[]},
-                      referrer: document.referrer, 
-                      timestamp: new Date(),
-                      isPublic:false
-                    };
+      //check for fields??
 
-      Session.set('logo', null);
-      Meteor.call('addNewCompany', newStartup);
-      alert('Los datos serán revisados y si la compañía cumple con el perfil de startup se hará pública');
-      //go to new idea profile
-      //alert(EJSON.stringify(impulseDoc));
-      window.history.back();
-      */
+      //make public the feedthank
+      var feedthankId = document.getElementById('cover').name;
+      Meteor.call('publishFeedthank', feedthankId);
+   
+      //Show new feedthank
+      //Router.go('feedthank')
+      Router.go('home');
     }
 
   });
@@ -160,7 +118,7 @@ Template.reason.events({
 },
 
   'change .reasonImg':function(evt, tmpl){
-    alert('reasonImg');
+    //alert('reasonImg');
     var images = document.getElementsByName('reasonImg');
     var arrayOfImgIds = Session.get('arrayOfImgIds');
     for (j = 0; j < images.length; j++)
@@ -168,7 +126,7 @@ Template.reason.events({
        var image = images[j].value;
        if(image == evt.target.value )
        {
-        alert(image)
+        //alert(image)
           var error = false;
           FS.Utility.eachFile(evt, function(file) {
         im = Images.insert(file, function (err, fileObj) {
@@ -205,6 +163,63 @@ Template.reason.events({
     }
     var feedthankId = document.getElementById('cover').name;
     Meteor.call('updateReasons', feedthankId, arrayOfReasons);
+  },
+})
+
+Template.meaning.events({
+
+   'click #meaningImgInput' : function(evt, tmpl){
+    evt.preventDefault();
+ var imgFile = tmpl.find('.meaningImg');
+ imgFile.click();
+},
+
+  'change .meaningImg':function(evt, tmpl){
+    //alert('meaningImg');
+    var images = document.getElementsByName('meaningImg');
+    var arrayOfMeaningImg = Session.get('arrayOfMeaningImg');
+    for (j = 0; j < images.length; j++)
+    {
+       var image = images[j].value;
+       if(image == evt.target.value )
+       {
+        //alert(image)
+          var error = false;
+          FS.Utility.eachFile(evt, function(file) {
+        im = Images.insert(file, function (err, fileObj) {
+          //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+          if(err){
+            error = true;
+          }
+        });
+        if(!error)
+        {
+          arrayOfMeaningImg.splice(j,1,im._id);
+        } 
+         });
+       }
+    }
+    
+    Session.set('arrayOfMeaningImg', arrayOfMeaningImg);
+  },
+
+ 'change .meaning':function(evt, tmpl){
+  //alert('allReason')
+    var texts = document.getElementsByName('meaningText');
+    var arrayOfMeanings = [];
+    var arrayOfMeaningImg = Session.get('arrayOfMeaningImg');
+
+
+    for(i = 0; i < texts.length; i++)
+    {
+
+      var text = texts[i].value;
+      var picture= arrayOfMeaningImg[i];
+        arrayOfMeanings.push({'text':text,'picture':picture});
+
+    }
+    var feedthankId = document.getElementById('cover').name;
+    Meteor.call('updateMeanings', feedthankId, arrayOfMeanings);
   },
 })
 
@@ -254,9 +269,4 @@ Template.reason.events({
 Template.editFeedthank.cover =function()
 {
   return Session.get('cover');
-}
-
-Template.editFeedthank.meanings = function()
-{
-  return Session.get('meanings');
 }

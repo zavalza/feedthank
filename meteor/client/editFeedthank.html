@@ -1,142 +1,139 @@
 <template name="editFeedthank">
-  <div style="background:#f1f1f1;">
+<div style="background:#f1f1f1;">
   <br/>
   <br/>
   <br/>
   <br/>
   <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title text-center">Edita tu dedicatoria {{_id}}</h3>
-    </div>
-    <div class="panel-body">
-      <form class="form col-md-10 col-md-offset-1 ">
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-               <img id="waitCover" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
-              {{#each image cover}}
-              <a href="#">
-                <img id="coverImgInput" class="img-responsive" src="{{url}}">
-              </a>
-              {{else}}
-              <a href="#">
-                <img id="coverImgInput" class="img-responsive" src="photo.png">
-              </a>
-              {{/each}}
-            </div>
-          </div>
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title text-center">Edita tu dedicatoria {{_id}}</h3>
+        </div>
+        <div class="panel-body">
+          <form class="form col-md-10 col-md-offset-1 ">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+                  <img id="waitCover" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
+                  {{#each image cover}}
+                  <a href="#">
+                    <img id="coverImgInput" class="img-responsive" src="{{url}}">
+                  </a>
+                  {{else}}
+                  <a href="#">
+                    <img id="coverImgInput" class="img-responsive" src="photo.png">
+                  </a>
+                  {{/each}}
+                </div>
+              </div>
               <input class="hidden" type="file" id="cover" name="{{_id}}"><br>
               <input type="text" class="form-control text-center" id="title" placeholder="El título de mi dedicatoria" value={{title}}>
-          <div class="row">
-            <div class="col-md-6 ">
-              <h3><label>De:&nbsp;</label></h3>
-            </div>
-            <div class="col-md-6 ">
-              <h3><label>Para:&nbsp; <span class="badge pull-right">+</span></label></h3>
-              <input type="text" class="form-control hidden" id="name" placeholder="Nombre">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-10">
-              <h3><label>¿Por qué te dedico este platillo?</label></h3>
-              {{#each reasons}}
-              {{>reason}}
-              {{/each}}
-          </div>
-              <div class="col-xs-12">
-              <a href="#" class="newReason">+ Añadir texto/imagen</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-10">
-              <h3><label>¿Por qué es especial este platillo?</label></h3>
-              {{#each meanings}}
-                {{>meaning}}
-              {{/each}}
-             
-            <div class="col-xs-12">
-              <a href="#" class="newMeaning">+ Añadir texto/imagen</a>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8">
-            <h3><label>¿Cuándo es la cita? </label></h3>
-            <div class='input-group date' id='datetimepicker1'>
+              <div class="row">
+                <div class="col-md-6 ">
+                  <h3><label>De:&nbsp;</label></h3>
+                </div>
+                <div class="col-md-6 ">
+                  <h3><label>Para:&nbsp; <span class="badge pull-right">+</span></label></h3>
+                  <input type="text" class="form-control hidden" id="name" placeholder="Nombre">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <h3><label>¿Por qué te dedico este platillo?</label></h3>
+                  {{#each reasons}}
+                  {{>reason}}
+                  {{/each}}
+                </div>
+                <div class="col-xs-12">
+                  <a href="#" class="newReason">+ Añadir texto/imagen</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <h3><label>¿Por qué es especial este platillo?</label></h3>
+                  {{#each meanings}}
+                  {{>meaning}}
+                  {{/each}}
+                  
+                  <div class="col-xs-12">
+                    <a href="#" class="newMeaning">+ Añadir texto/imagen</a>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <h3><label>¿Cuándo es la cita? </label></h3>
+                  <div class='input-group date' id='datetimepicker1'>
                     <input type='text' id="when" class="form-control" placeholder="Fecha y hora. Da click al icono." value={{when}}>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
+                  </div>
                 </div>
-          </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <h3><label>Te espero aquí:</label></h3>
+                  <input type="text" class="form-control" id="place" placeholder="Nombre del lugar">
+                </div>
+              </div>
+              <div class="row">
+                <ul class="pager">
+                  <a class="btn btn-lg btn-success publish">Publicar</a>
+                </ul>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="row">
-          <div class="col-md-8">
-            <h3><label>Te espero aquí:</label></h3>
-            <input type="text" class="form-control" id="place" placeholder="Nombre del lugar">
-          </div>
-        </div>
-          <div class="row">
-            <ul class="pager">
-               <a class="btn btn-lg btn-info cancel">Guardar</a>
-              <a class="btn btn-lg btn-success save">Publicar</a>
-            </ul>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
-</div>
-</div>
 </template>
-
 <template name="reason">
-  <div class="reason">
-<div class="col-md-10">
-              <textarea class="form-control" name="reasonText" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?" value={{text}}></textarea>
-              <br/>
-              </div>
-             <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
-              <img id="waitReasonImg" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
-             <input id={{picture}} class="hidden reasonImg" type="file" name="reasonImg">
-             {{#each image picture}}
-              <a href="#">
-                <img id="reasonImgInput" class="img-responsive" src="{{url}}">
-              </a>
-              {{else}}
-              <a href="#">
-                <img id="reasonImgInput" class="img-responsive" src="photo.png">
-              </a>
-              {{/each}}
-            </div>
+<div class="reason">
+  <div class="col-md-10">
+    <textarea class="form-control" name="reasonText" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?" value={{text}}></textarea>
+    <br/>
   </div>
-</template>
-
-<template name="meaning">
- <div class="col-md-10">
-              <textarea class="form-control" id="highConcept"  placeholder="Una historia, un ingrediente especial, un esfuerzo único ¿Qué hace diferente a este platillo?"></textarea>
-              <br/>
-              </div>
-             <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
-              {{#each image logo}}
-              <a href="#">
-                <span class="badge pull-right deleteLogo">x</span>
-                <img class="img-responsive" src="{{url}}">
-              </a>
-              {{else}}
-              <a href="#">
-                <img id="meaningImgInput" class="img-responsive" src="photo.png">
-              </a>
-              {{/each}}
-            </div>
-            <input class="hidden" type="file" id="meaningImgInput">
-</template>
-
-<!--div class="input-append date">
-    <input value="dd-mm-yyyy" disabled>
-    <span class="add-on btn"><span class="glyphicon glyphicon-calendar"></span></span>
+  <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
+    <img id="waitReasonImg" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
+    <input id={{picture}} class="hidden reasonImg" type="file" name="reasonImg">
+    {{#each image picture}}
+    <a href="#">
+      <img id="reasonImgInput" class="img-responsive" src="{{url}}">
+    </a>
+    {{else}}
+    <a href="#">
+      <img id="reasonImgInput" class="img-responsive" src="photo.png">
+    </a>
+    {{/each}}
+  </div>
 </div>
-
+</template>
+<template name="meaning">
+<div class="meaning">
+<div class="col-md-10">
+  <textarea class="form-control" name="meaningText"  placeholder="Una historia, un ingrediente especial, un esfuerzo único ¿Qué hace diferente a este platillo?" value={{text}}></textarea>
+  <br/>
+</div>
+<div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
+  <img id="waitMeaningImg" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
+  <input id={{picture}} class="hidden meaningImg" type="file" name="meaningImg">
+  {{#each image picture}}
+  <a href="#">
+    <img id="meaningImgInput" class="img-responsive" src="{{url}}">
+  </a>
+  {{else}}
+  <a href="#">
+    <img id="meaningImgInput" class="img-responsive" src="photo.png">
+  </a>
+  {{/each}}
+</div>
+</div>
+</template>
+<!--div class="input-append date">
+<input value="dd-mm-yyyy" disabled>
+<span class="add-on btn"><span class="glyphicon glyphicon-calendar"></span></span>
+</div>
 google maps api para input de lugar-->

@@ -59,17 +59,6 @@ Template.editFeedthank.events({
     });
   },
 
-  'change .reason':function(evt, tmpl){
-    var texts = document.getElementsByName('reasonText');
-    var arrayOfReasons = [];
-    for(i = 0; i < texts.length; i++)
-    {
-      var text = texts[i].value;
-        arrayOfReasons.push({'text':text});
-    }
-    var feedthankId = document.getElementById('cover').name;
-    Meteor.call('updateReasons', feedthankId, arrayOfReasons);
-  },
 
   'load #coverImgInput':function(evt, tmpl){
     document.getElementById('waitCover').style.height='0px';
@@ -81,15 +70,13 @@ Template.editFeedthank.events({
     Meteor.call('updateTitle', this._id, newTitle);
   },
 
-  /*'blur #when' : function(evt, tmpl){
-    var newWhen = document.getElementById('when').value;
-    alert(newWhen);
-  },*/
-
 
   'click .newReason' : function(evt, tmpl){
     var feedthankId = document.getElementById('cover').name;
     Meteor.call('addReason', feedthankId);
+    var arrayOfImgIds = Session.get('arrayOfImgIds');
+    arrayOfImgIds.push(null);
+    Session.set('arrayOfImgIds', arrayOfImgIds);
   },
 
   'click .newMeaning' : function(evt, tmpl){
@@ -101,10 +88,6 @@ Template.editFeedthank.events({
 
   'click #coverImgInput' : function(evt, tmpl){
   document.getElementById('cover').click();
-},
-
-'click #reasonImgInput' : function(evt, tmpl){
-  document.getElementById('reasonImg').click();
 },
 
 'click #meaningImgInput' : function(evt, tmpl){
@@ -168,6 +151,62 @@ Template.editFeedthank.events({
 
   });
 
+
+Template.reason.events({
+  'click #reasonImgInput' : function(evt, tmpl){
+    evt.preventDefault();
+ var imgFile = tmpl.find('.reasonImg');
+ imgFile.click();
+},
+
+  'change .reasonImg':function(evt, tmpl){
+    alert('reasonImg');
+    var images = document.getElementsByName('reasonImg');
+    var arrayOfImgIds = Session.get('arrayOfImgIds');
+    for (j = 0; j < images.length; j++)
+    {
+       var image = images[j].value;
+       if(image == evt.target.value )
+       {
+        alert(image)
+          var error = false;
+          FS.Utility.eachFile(evt, function(file) {
+        im = Images.insert(file, function (err, fileObj) {
+          //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+          if(err){
+            error = true;
+          }
+        });
+        if(!error)
+        {
+          arrayOfImgIds.splice(j,1,im._id);
+        } 
+         });
+       }
+    }
+    
+    Session.set('arrayOfImgIds', arrayOfImgIds);
+  },
+
+ 'change .reason':function(evt, tmpl){
+  //alert('allReason')
+    var texts = document.getElementsByName('reasonText');
+    var arrayOfReasons = [];
+    var arrayOfImgIds = Session.get('arrayOfImgIds');
+
+
+    for(i = 0; i < texts.length; i++)
+    {
+
+      var text = texts[i].value;
+      var picture= arrayOfImgIds[i];
+        arrayOfReasons.push({'text':text,'picture':picture});
+
+    }
+    var feedthankId = document.getElementById('cover').name;
+    Meteor.call('updateReasons', feedthankId, arrayOfReasons);
+  },
+})
 
     Template.editFeedthank.helpers ({
        

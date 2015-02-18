@@ -93,15 +93,17 @@
 </template>
 
 <template name="reason">
+  <div class="reason">
 <div class="col-md-10">
-              <textarea class="form-control reason" name="reasonText" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?" value={{text}}></textarea>
+              <textarea class="form-control" name="reasonText" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?" value={{text}}></textarea>
               <br/>
               </div>
              <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
-              {{#each image logo}}
+              <img id="waitReasonImg" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
+             <input id={{picture}} class="hidden reasonImg" type="file" name="reasonImg">
+             {{#each image picture}}
               <a href="#">
-                <span class="badge pull-right deleteLogo">x</span>
-                <img class="img-responsive" src="{{url}}">
+                <img id="reasonImgInput" class="img-responsive" src="{{url}}">
               </a>
               {{else}}
               <a href="#">
@@ -109,7 +111,7 @@
               </a>
               {{/each}}
             </div>
-            <input class="hidden" type="file" id="reasonImg">
+  </div>
 </template>
 
 <template name="meaning">

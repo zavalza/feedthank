@@ -21,8 +21,7 @@
            {{#if currentUser}}
           <li><a href="#" class="tryLogout">Salir</a></li>
           {{else}}
-          <li><a href="{{pathFor 'newCostumer'}}">Ingresar</a></li>
-          <li><a href="{{pathFor 'newCostumer'}}">Registrarme</a></li>
+          <li><a href="">{{>loginButtons}}</a></li>
           {{/if}}
         </ul>
         </div><!--/.nav-collapse -->

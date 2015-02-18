@@ -10,6 +10,11 @@ Session.set('currentFeedthank', null);
 Session.set('coverId', null);
 });
 
+/*Accounts.ui.config({
+  requestPermissions: {
+    facebook: ['user_likes']
+  }
+});*/
 
   Template.pitch.events({
 

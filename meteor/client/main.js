@@ -7,7 +7,7 @@ Session.set('meanings', ['']);
 Session.set('arrayOfImgIds',[]);
 Session.set('arrayOfMeaningImg',[]);
 Session.set('currentFeedthank', null);
-Session.set('cover', null);
+Session.set('coverId', null);
 });
 
 

@@ -23,11 +23,23 @@
 -moz-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
 box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);">
 		<a target="_newtab" class="companyLink" href="#">
-			<img class="img-responsive" width="100%" style="height: 200px;" src="full.jpg">
+			{{#each image cover}}
+                  <a href="#">
+                    <img id="coverImgInput" class="img-responsive" src="{{url}}">
+                  </a>
+                  {{else}}
+                  <a href="#">
+                   <img class="img-responsive" width="100%" style="height: 200px;" src="feedthank.jpg">
+                  </a>
+                  {{/each}}
 		</a>
 	<span class="thumbText ">
 		<p style="font-size:16px;" class="text-center">
-			Nombre de platillo
+			{{#if title}}
+			{{title}}
+			{{else}}
+			Un feedthank genial
+			{{/if}}
 		</p>
 		<span>
 		<div class="box">

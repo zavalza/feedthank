@@ -37,9 +37,9 @@ Template.editFeedthank.events({
     document.getElementById('waitCover').style.visibility='visible';
     document.getElementById('waitCover').style.height='100px';
     var feedthankId = document.getElementById('cover').name;
-    if(Session.get('cover')) //has already uploaded a image, delete it
+    if(Session.get('coverId')) //has already uploaded a image, delete it
     {
-      Meteor.call('deleteCover',feedthankId, Session.get('cover'));
+      Meteor.call('deleteCover',feedthankId, Session.get('coverId'));
     }
     //upload new Image   
     var error = false;
@@ -55,8 +55,7 @@ Template.editFeedthank.events({
 
         //alert(EJSON.stringify(im));
         //Show it
-        Session.set('cover', im._id);
-        //update db
+        Session.set('coverId', im._id);        //update db
         Meteor.call('updateCover', feedthankId, im._id);
       }   
     });
@@ -265,8 +264,3 @@ Template.meaning.events({
           
         },
     })
-
-Template.editFeedthank.cover =function()
-{
-  return Session.get('cover');
-}

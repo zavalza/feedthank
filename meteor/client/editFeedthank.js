@@ -100,10 +100,16 @@ Template.editFeedthank.events({
       //make public the feedthank
       var feedthankId = document.getElementById('cover').name;
       Meteor.call('publishFeedthank', feedthankId);
-   
+    
+    FB.ui({
+  method: 'send',
+  link: 'http://www.nytimes.com/2011/06/15/arts/people-argue-just-to-win-scholars-assert.html',
+});
+
+
       //Show new feedthank
       //Router.go('feedthank')
-      Router.go('home');
+      //Router.go('home');
     }
 
   });

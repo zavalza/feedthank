@@ -1,9 +1,28 @@
 Template.navigation.events ({
 	'click .newFeedthank' : function(evt, tmpl){
-		var id = Meteor.call('newFeedthank', function(err, result){
+
+		if(Meteor.user())
+		{
+
+		var id = Meteor.call('newFeedthank', Meteor.userId(), function(err, result){
 			Session.set('currentFeedthank', result);
 			Router.go('editFeedthank');
 		})
+		}
+		else
+		{
+			Meteor.loginWithFacebook({},  function (err) {
+          		if (!err)
+          		{
+          			var id = Meteor.call('newFeedthank', Meteor.userId(), function(err, result){
+					Session.set('currentFeedthank', result);
+					Router.go('editFeedthank');
+          			});
+          		}
+
+     			});
+		}
+
 
 	},
 

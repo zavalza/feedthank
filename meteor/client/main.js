@@ -18,8 +18,32 @@ Session.set('coverId', null);
 
   Template.pitch.events({
 
-    'click button': function () {
-      Router.go('newCostumer');
-    }
+	'click .newFeedthank' : function(evt, tmpl){
+
+		if(Meteor.user())
+		{
+
+		var id = Meteor.call('newFeedthank', Meteor.userId(), function(err, result){
+			Session.set('currentFeedthank', result);
+			Router.go('editFeedthank');
+		})
+		}
+		else
+		{
+			Meteor.loginWithFacebook({},  function (err) {
+          		if (!err)
+          		{
+          			var id = Meteor.call('newFeedthank', Meteor.userId(), function(err, result){
+					Session.set('currentFeedthank', result);
+					Router.go('editFeedthank');
+          			});
+          		}
+
+     			});
+		}
+
+
+	},
+
   });
 

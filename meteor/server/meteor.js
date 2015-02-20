@@ -52,3 +52,25 @@ Meteor.methods({
 	}
 	
 })
+
+Accounts.onCreateUser(function(options, user){
+    var name, email, fbLink, fbPicture;
+    if(user.services.facebook)
+    {
+      console.log(user.services.facebook);
+      name = user.services.facebook.first_name+" "+user.services.facebook.last_name;
+      email = user.services.facebook.email;
+      fbLink = user.services.facebook.link;
+      fbPicture = "http://graph.facebook.com/v2.0/" + user.services.facebook.id + "/picture/?width=100&height=100"; //graph request for picture
+      var profile ={
+                      url:null,
+                      name:name,
+                      email:email,
+                      picture:fbPicture, //url of picture
+                      facebook_url:fbLink,
+                    }
+   
+    }
+    user.profile = profile;
+    return user;
+  });

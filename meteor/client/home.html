@@ -1,5 +1,5 @@
 <template name="home">
-	<div style="background:#f1f1f1;">
+<div style="background:#f1f1f1;">
 	<br/>
 	<br/>
 	<br/>
@@ -8,8 +8,8 @@
 			<br/>
 			{{#each feedthank}}
 			<div class="col-md-3 col-md-offset-0 col-xs-10 col-xs-offset-1">
-			{{>feedthankThumbnail}}
-		</div>
+				{{>feedthankThumbnail}}
+			</div>
 			{{else}}
 			<h3>No hay dedicatorias aún</h3>
 			{{/each}}
@@ -17,37 +17,54 @@
 	</div>
 </div>
 </template>
-
 <template name="feedthankThumbnail">
 <div class="thumbnail" style="z-index: 5; -webkit-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
--moz-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);">
-		<a target="_newtab" class="companyLink" href="#">
-			{{#each image cover}}
-                  <a href="#">
-                    <img id="coverImgInput" style="height: 200px;" class="img-responsive" src="{{url}}">
-                  </a>
-                  {{else}}
-                  <a href="#">
-                   <img class="img-responsive" width="100%" style="height: 200px;" src="feedthank.jpg">
-                  </a>
-                  {{/each}}
+	-moz-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
+	box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);">
+	<a target="_newtab" class="companyLink" href="#">
+		{{#each image cover}}
+		<a href="#">
+			<img id="coverImgInput" style="height: 200px;" class="img-responsive" src="{{url}}">
 		</a>
+		{{else}}
+		<a href="#">
+			<img class="img-responsive" width="200px" height="200px" src="feedthank.jpg">
+		</a>
+		{{/each}}
+	</a>
 	<span class="thumbText " style="display:inline-block;">
-		<p style="font-size:16px;" class="text-center">
-			{{#if title}}
-			{{title}}
-			{{else}}
-			Un feedthank genial
-			{{/if}}
-		</p>
-		<div class="box">
+	<p style="font-size:16px;" class="text-center"><b>
+	{{#if title}}
+	{{title}}
+	{{else}}
+	Un feedthank genial
+	{{/if}}
+	</b>
+	</p>
+	<div class="box">
 		<div class="text">
-		<h5 style="margin: 8px; font-size:16px;  color:#666;" class="text-justify">De: asdf</h5>
-		<h5 style="margin: 8px; font-size:16px;  color:#666;" class="text-justify">Para:adaf</h5>
+			<div class="row">
+				<div class="col-md-3">
+					<b>De:&nbsp;</b>
+				</div>
+				<div class="col-md-9">
+					{{#each user authorId}}
+					<a href="#"><img class="btn img-responsive" width="60" src="{{profile.picture}}"></a>
+					{{/each}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<b>Para:&nbsp;</b>
+				</div>
+				<div class="col-md-9">
+					{{#each user authorId}}
+					<a href="#"><img class="btn img-responsive" width="60" src="{{profile.picture}}"></a>
+					{{/each}}
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
 	</span>
 </div>
-
 </template>

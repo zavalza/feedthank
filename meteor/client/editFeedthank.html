@@ -30,18 +30,6 @@
               <input class="hidden" type="file" id="cover" name="{{_id}}"><br>
               <input type="text" class="form-control text-center" id="title" placeholder="El título de mi dedicatoria" value={{title}}>
               <div class="row">
-                <div class="col-md-6 ">
-                  <h3><label>De:&nbsp;</label></h3>
-                  {{#each user authorId}}
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="btn img-responsive" width="60" src="{{profile.picture}}"></a> {{profile.name}}
-                  {{/each}}
-                </div>
-                <div class="col-md-6 ">
-                  <h3><label>Para:&nbsp; <span class="badge pull-right">+</span></label></h3>
-                  <input type="text" class="form-control hidden" id="name" placeholder="Nombre">
-                </div>
-              </div>
-              <div class="row">
                 <div class="col-md-10">
                   <h3><label>¿Por qué te dedico este platillo?</label></h3>
                   {{#each reasons}}
@@ -83,7 +71,7 @@
               <div class="row">
                 <ul class="pager">
                   <!--<div class="fb-send" data-href="https://developers.facebook.com/docs/plugins/" data-width="50" data-colorscheme="light"></div>-->
-                  <a class="btn btn-lg btn-success publish">Enviar invitaciones</a>
+                  <a class="btn btn-lg btn-success publish">Manda tu dedicatoria</a>
                 </ul>
               </div>
             </div>

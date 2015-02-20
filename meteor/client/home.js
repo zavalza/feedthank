@@ -60,6 +60,11 @@ Template.feedthankThumbnail.rendered = function()
 
 Template.feedthankThumbnail.helpers({
 
+      user:function(userId)
+       {
+          return Meteor.users.find({_id:userId})
+       },
+
 
     image: function(ids)
         {

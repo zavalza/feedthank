@@ -98,11 +98,16 @@ Template.editFeedthank.events({
       //check for fields??
 
       //make public the feedthank
-      var feedthankId = document.getElementById('cover').name;
-      Meteor.call('publishFeedthank', feedthankId);
+      //var feedthankId = document.getElementById('cover').name;
+      //Meteor.call('publishFeedthank', feedthankId);
+
+      //public url
+
+      //private url
     
     FB.ui({
   method: 'send',
+  display:'iframe',
   link: 'http://www.nytimes.com/2011/06/15/arts/people-argue-just-to-win-scholars-assert.html',
 });
 
@@ -230,11 +235,6 @@ Template.meaning.events({
 
     Template.editFeedthank.helpers ({
 
-       user:function(userId)
-       {
-          return Meteor.users.find({_id:userId})
-       },
-       
         image: function(ids)
         {
           if (typeof (ids) == 'object')

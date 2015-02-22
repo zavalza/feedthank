@@ -13,7 +13,7 @@ Template.feedthankThumbnail.rendered = function()
         }
     });
   $('.thumbText').each(function(){
-        $(this).css('height',maxHeight);
+        $(this).css('height',maxHeight+2);
     });
 
 }

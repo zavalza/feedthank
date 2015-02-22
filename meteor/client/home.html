@@ -24,15 +24,15 @@
 	<a target="_newtab" class="companyLink" href="#">
 		{{#each image cover}}
 		<a href="#">
-			<img id="coverImgInput" style="height: 200px;" class="img-responsive" src="{{url}}">
+			<img  style="height: 200px; widht:200px;" class="img-responsive" src="{{url}}">
 		</a>
 		{{else}}
 		<a href="#">
-			<img class="img-responsive" width="200px" height="200px" src="feedthank.jpg">
+			<img class="img-responsive" style="height: 200px; widht:200px;" src="feedthank.jpg">
 		</a>
 		{{/each}}
 	</a>
-	<span class="thumbText " style="display:inline-block;">
+	<span class="thumbText" style="display:inline-block;">
 	<p style="font-size:16px;" class="text-center"><b>
 	{{#if title}}
 	{{title}}

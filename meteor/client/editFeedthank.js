@@ -1,5 +1,10 @@
 Template.editFeedthank.rendered = function()
 {
+ try {
+        FB.XFBML.parse();
+    }catch(e) {} 
+
+
   //hide edite from other users? make isPublic:false
 
 
@@ -105,10 +110,11 @@ Template.editFeedthank.events({
 
       //private url
     
-    FB.ui({
+    /*FB.ui({
   method: 'send',
+  display:'popup',
   link: 'http://www.nytimes.com/2011/06/15/arts/people-argue-just-to-win-scholars-assert.html',
-});
+});Pop up works ok in all browsers, but not in mobile*/
 
 
       //Show new feedthank

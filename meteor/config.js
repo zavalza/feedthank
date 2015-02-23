@@ -20,6 +20,5 @@ Images = new FS.Collection("images", {
     var currentFeedthank = Session.get('currentFeedthank');
    return Feedthanks.findOne({_id:currentFeedthank});
     }});
-  this.route('newCostumer', {path: '/registro'});
   }
   );

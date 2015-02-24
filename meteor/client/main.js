@@ -8,6 +8,17 @@ Session.set('arrayOfImgIds',[]);
 Session.set('arrayOfMeaningImg',[]);
 Session.set('currentFeedthank', null);
 Session.set('coverId', null);
+
+      return SEO.config({
+        title: 'Feedthank - Dedica tus platillos contando una historia',
+        meta: {
+          'description': 'Dedica tus platillos contando una historia'
+        },
+        og: {
+          'image': 'http://feedthank.com/background.jpg' 
+        }
+      });
+
 });
 
 /*Accounts.ui.config({

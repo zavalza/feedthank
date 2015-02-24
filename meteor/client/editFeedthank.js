@@ -98,6 +98,10 @@ Template.editFeedthank.events({
   document.getElementById('cover').click();
 },
 
+ 'click .fbSend' : function(evt, tmpl){
+  document.getElementById('fbSendButton').click();
+},
+
     'click .publish': function(evt, tmpl)
     {
       //check for fields??

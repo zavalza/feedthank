@@ -20,5 +20,18 @@ Images = new FS.Collection("images", {
     var currentFeedthank = Session.get('currentFeedthank');
    return Feedthanks.findOne({_id:currentFeedthank});
     }});
-  }
+
+  this.route('publicFeedthank', {path:'/feedthank/:_id', data:function(){
+
+   return Feedthanks.findOne({_id:this.params._id});
+    }});
+
+  this.route('privateFeedthank', {path:'/feedthank/p/:privateId', data:function(){
+
+   return Feedthanks.findOne({privateId:this.params.privateId});
+    }});
+
+}
+
+
   );

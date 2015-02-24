@@ -255,6 +255,13 @@ Template.meaning.events({
           }
           
         },
+
+        rootURL: function()
+        {
+          //alert (document.URL)
+          var root =  Meteor.absoluteUrl();
+          return root.slice(0, root.length-1);
+        }
     });
 
     Template.reason.helpers({

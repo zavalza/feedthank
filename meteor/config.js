@@ -1,17 +1,6 @@
   //MongoDB
 Feedthanks = new Meteor.Collection("feedthanks");
 
-//File Storage in MongoDb using FS
-var imageStore = new FS.Store.GridFS("images");
-Images = new FS.Collection("images", {
-  stores: [imageStore],
-  filter: {
-      allow: {
-        contentTypes: ['image/*'] //allow only images in this FS.Collection
-      }
-    }
-});
-
   Router.map(function() {
   this.route('pitch', {path:'/'});
   this.route('home', {path:'/home'});
@@ -21,7 +10,7 @@ Images = new FS.Collection("images", {
    return Feedthanks.findOne({_id:currentFeedthank});
     }});
 
-  this.route('publicFeedthank', {path:'/feedthank/:_id', 
+  this.route('publicFeedthank', {path:'/f/:_id', 
     data:function(){
 
    return Feedthanks.findOne({_id:this.params._id});
@@ -41,14 +30,21 @@ Images = new FS.Collection("images", {
         },
         og: {
           'title': feedthank.title,
-          'description': 'Something'
+          'description': 'Something',
+          'type':'Website',
+          //http://feedthank.com/cfs/files/images/LA6boeHn53Y395tyT/pastel.jpg
+          'image': 'http://feedthank.com/background.jpg',
+          'image:type':'image/jpeg',
+          'image:width':'640',
+          'image:height':'442'
+          //'image': 'http://feedthank.com/cfs/files/images/'+feedthank.cover
         }
       });
     }
 
   });
 
-  this.route('privateFeedthank', {path:'/feedthank/p/:privateId', data:function(){
+  this.route('privateFeedthank', {path:'/fp/:privateId', data:function(){
 
    return Feedthanks.findOne({privateId:this.params.privateId});
     }});

@@ -1,9 +1,5 @@
 Template.editFeedthank.rendered = function()
 {
- try {
-        FB.XFBML.parse();
-    }catch(e) {} 
-
 
   //hide edite from other users? make isPublic:false
 
@@ -61,7 +57,23 @@ Template.editFeedthank.events({
         //alert(EJSON.stringify(im));
         //Show it
         Session.set('coverId', im._id);        //update db
-        Meteor.call('updateCover', feedthankId, im._id);
+        Meteor.call('updateCover', feedthankId, im._id, function(error, result){
+                  //call fb to scrape the url to send
+        var url = document.getElementById('sendFb').value;
+        HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true",
+          function( error, result ){
+              if(!error)   {
+                alert('sucess')
+                FB.XFBML.parse();
+              }
+              else
+              {
+                alert('error')
+              }
+               } );
+        });
+
+
       }   
     });
   },
@@ -74,7 +86,23 @@ Template.editFeedthank.events({
 
   'change #title' : function(evt, tmpl){
     var newTitle = document.getElementById('title').value;
-    Meteor.call('updateTitle', this._id, newTitle);
+    Meteor.call('updateTitle', this._id, newTitle, function(error, result){
+       //call fb to scrape the url to send
+        var url = document.getElementById('sendFb').value;
+        HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true",
+          function( error, result ){
+              if(!error)   {
+                alert('sucess')
+                FB.XFBML.parse();
+              }
+              else
+              {
+                alert('error')
+              }
+               } );
+    });
+
+       
   },
 
 
@@ -260,6 +288,8 @@ Template.meaning.events({
         {
           //alert (document.URL)
           var root =  Meteor.absoluteUrl();
+          //root = root.replace('http://', 'www.');
+          //alert (root);
           return root.slice(0, root.length-1);
         }
     });

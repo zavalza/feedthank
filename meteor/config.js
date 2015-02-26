@@ -32,8 +32,7 @@ Feedthanks = new Meteor.Collection("feedthanks");
           'title': feedthank.title,
           'description': 'Something',
           'type':'Website',
-          //http://feedthank.com/cfs/files/images/LA6boeHn53Y395tyT/pastel.jpg
-          'image': 'http://feedthank.com/background.jpg',
+          'image': 'https://s3-us-west-2.amazonaws.com/feedthank/images/CEpCGihdaDWfHaLpz-dinner.jpg',
           'image:type':'image/jpeg',
           'image:width':'640',
           'image:height':'442'

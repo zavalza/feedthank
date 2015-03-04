@@ -81,13 +81,18 @@ Feedthanks = new Meteor.Collection("feedthanks");
         imageUrl = "https://s3-us-west-2.amazonaws.com/feedthank/images/"+image._id+"-"+image.original.name;
       }
 
+      var titleToShow =  feedthank.title;
+      if(titleToShow == null)
+        titleToShow = "Mi platillo para ti";
+
+
       SEO.set({
-        title: feedthank.title,
+        title: titleToShow,
         meta: {
           'description': 'Something'
         },
         og: {
-          'title': feedthank.title,
+          'title': titleToShow,
           'description': 'Eres una persona especial y por eso te he cocinado algo, da click en la imagen para descubrirlo',
           'type':'article',
           'image': imageUrl,

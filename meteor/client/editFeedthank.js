@@ -57,23 +57,13 @@ Template.editFeedthank.events({
         //alert(EJSON.stringify(im));
         //Show it
         Session.set('coverId', im._id);        //update db
-        Meteor.call('updateCover', feedthankId, im._id, function(error, result){
-                  //call fb to scrape the url to send
         var url = document.getElementById('sendFb').value;
-        alert(url);
-        HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true&method=post",
-          function( error, result ){
-              if(!error)   {
-                alert('sucess')
-                FB.XFBML.parse();
-              }
-              else
-              {
-                alert('error')
-              }
-               } );
+        
+        Meteor.call('updateCover', feedthankId, im._id, url, function(error, result){
+    
+            FB.XFBML.parse();
         });
-
+      
 
       }   
     });
@@ -87,23 +77,13 @@ Template.editFeedthank.events({
 
   'change #title' : function(evt, tmpl){
     var newTitle = document.getElementById('title').value;
-    Meteor.call('updateTitle', this._id, newTitle, function(error, result){
-       //call fb to scrape the url to send
-        var url = document.getElementById('sendFb').value;
-         alert(url);
-        HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true&method=post",
-          function( error, result ){
-              if(!error)   {
-                alert('sucess')
-                FB.XFBML.parse();
-              }
-              else
-              {
-                alert('error')
-              }
-               } );
-    });
-
+     var url = document.getElementById('sendFb').value;
+        
+      Meteor.call('updateTitle', this._id, newTitle, url, function(error, result){
+            FB.XFBML.parse();
+          });
+       
+     
        
   },
 
@@ -290,8 +270,6 @@ Template.meaning.events({
         {
           //alert (document.URL)
           var root =  Meteor.absoluteUrl();
-          if(root.indexOf('localhost')!=-1)
-            return root="http://feedthank.com/fp/oGgFxwC3sXop8bCum"; //default url for test mode, dont care about send info
           //root = root.replace('http://', 'www.');
           //alert (root);
           return root.slice(0, root.length-1);

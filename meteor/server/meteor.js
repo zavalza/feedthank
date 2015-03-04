@@ -6,14 +6,45 @@ Meteor.methods({
 		return id;
 	},
 
-	updateTitle:function(id, newTitle){
+	updateTitle:function(id, newTitle, url){
 		console.log('update title of '+id+' to '+newTitle);
 		Feedthanks.update({_id:id},{$set:{'title':newTitle}});
+		var Future = Npm.require('fibers/future');
+		var future = new Future();
+		HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true&method=post",
+      	function( error, result ){
+          if(!error)   {
+            console.log('success of fb scrape');
+            future.return(true);
+          }
+          else
+          {
+            console.log(error.message);
+            future.return(false);
+          }
+           } );
+		
+		return future.wait();
 	},
 
-	updateCover:function(id, imgId){
+	updateCover:function(id, imgId, url){
 		console.log('cover of feedthank + '+id+' has id: '+imgId);
 		Feedthanks.update({_id:id},{$set:{'cover':imgId}});
+		var Future = Npm.require('fibers/future');
+		var future = new Future();
+	   HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true&method=post",
+      function( error, result ){
+          if(!error)   {
+            console.log('success of fb scrape');
+            future.return(true);
+          }
+          else
+          {
+            console.log(error.message);
+            future.return(false);
+          }
+           } );
+	   return future.wait();
 	},
 
 	addReason:function(id){

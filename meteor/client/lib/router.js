@@ -58,7 +58,7 @@
    return Feedthanks.findOne({privateId:this.params.privateId});
     },
         onAfterAction: function() {
-      /*var feedthank, image, imageUrl;
+      var feedthank, image, imageUrl;
 
       feedthank = this.data();
 
@@ -76,18 +76,18 @@
 
       var titleToShow =  feedthank.title;
       if(titleToShow == null)
-        titleToShow = "Mi platillo para ti";*/
+        titleToShow = "Mi platillo para ti";
 
       SEO.set({
-        title: 'Titulo',
+        title: titleToShow,
         meta: {
           'description': 'Something'
         },
         og: {
-          'title': 'Titulo',
+          'title': titleToShow,
           'description': 'Eres una persona especial y por eso te he cocinado algo, da click en la imagen para descubrirlo',
           'type':'article',
-          'image': 'http://feedthank.com/background.jpg',
+          'image': imageUrl,
           'image:type':'image/jpeg',
           'image:width':'640',
           'image:height':'442'

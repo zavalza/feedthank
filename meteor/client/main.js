@@ -9,6 +9,10 @@ Session.set('arrayOfMeaningImg',[]);
 Session.set('currentFeedthank', null);
 Session.set('coverId', null);
 
+Meteor.subscribe('allFeedthanks');
+Meteor.subscribe('allImages');
+
+
       return SEO.config({
         title: 'Feedthank - Dedica tus platillos contando una historia',
         meta: {

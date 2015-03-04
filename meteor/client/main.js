@@ -19,6 +19,7 @@ Session.set('coverId', null);
         }
       });
 
+
 });
 
 /*Accounts.ui.config({

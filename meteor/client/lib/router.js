@@ -1,6 +1,3 @@
-  //MongoDB
-Feedthanks = new Meteor.Collection("feedthanks");
-
   Router.map(function() {
   this.route('pitch', {path:'/'});
   this.route('home', {path:'/home'});
@@ -17,11 +14,7 @@ Feedthanks = new Meteor.Collection("feedthanks");
     },
     onAfterAction: function() {
       var feedthank, image, imageUrl;
-      // The SEO object is only available on the client.
-      // Return if you define your routes on the server, too.
-      if (!Meteor.isClient) {
-        return;
-      }
+
       feedthank = this.data();
 
       image = Images.findOne({
@@ -36,13 +29,17 @@ Feedthanks = new Meteor.Collection("feedthanks");
         imageUrl = "https://s3-us-west-2.amazonaws.com/feedthank/images/"+image._id+"-"+image.original.name;
       }
 
+        var titleToShow =  feedthank.title;
+      if(titleToShow == null)
+        titleToShow = "Mi platillo para ti";
+
       SEO.set({
-        title: feedthank.title,
+        title: titleToShow,
         meta: {
           'description': 'Something'
         },
         og: {
-          'title': feedthank.title,
+          'title': titleToShow,
           'description': 'Las personas pueden expresar muchas cosas cocinando, da click en la imagen para ver mi historia',
           'type':'article',
           'image': imageUrl,
@@ -61,12 +58,8 @@ Feedthanks = new Meteor.Collection("feedthanks");
    return Feedthanks.findOne({privateId:this.params.privateId});
     },
         onAfterAction: function() {
-      var feedthank, image, imageUrl;
-      // The SEO object is only available on the client.
-      // Return if you define your routes on the server, too.
-      if (!Meteor.isClient) {
-        return;
-      }
+      /*var feedthank, image, imageUrl;
+
       feedthank = this.data();
 
       image = Images.findOne({
@@ -83,19 +76,18 @@ Feedthanks = new Meteor.Collection("feedthanks");
 
       var titleToShow =  feedthank.title;
       if(titleToShow == null)
-        titleToShow = "Mi platillo para ti";
-
+        titleToShow = "Mi platillo para ti";*/
 
       SEO.set({
-        title: titleToShow,
+        title: 'Titulo',
         meta: {
           'description': 'Something'
         },
         og: {
-          'title': titleToShow,
+          'title': 'Titulo',
           'description': 'Eres una persona especial y por eso te he cocinado algo, da click en la imagen para descubrirlo',
           'type':'article',
-          'image': imageUrl,
+          'image': 'http://feedthank.com/background.jpg',
           'image:type':'image/jpeg',
           'image:width':'640',
           'image:height':'442'

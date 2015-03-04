@@ -60,7 +60,8 @@ Template.editFeedthank.events({
         Meteor.call('updateCover', feedthankId, im._id, function(error, result){
                   //call fb to scrape the url to send
         var url = document.getElementById('sendFb').value;
-        HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true",
+        alert(url);
+        HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true&method=post",
           function( error, result ){
               if(!error)   {
                 alert('sucess')
@@ -89,7 +90,8 @@ Template.editFeedthank.events({
     Meteor.call('updateTitle', this._id, newTitle, function(error, result){
        //call fb to scrape the url to send
         var url = document.getElementById('sendFb').value;
-        HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true",
+         alert(url);
+        HTTP.get("https://graph.facebook.com/?id="+url+"&scrape=true&method=post",
           function( error, result ){
               if(!error)   {
                 alert('sucess')
@@ -288,6 +290,8 @@ Template.meaning.events({
         {
           //alert (document.URL)
           var root =  Meteor.absoluteUrl();
+          if(root.indexOf('localhost')!=-1)
+            return root="http://feedthank.com/fp/oGgFxwC3sXop8bCum"; //default url for test mode, dont care about send info
           //root = root.replace('http://', 'www.');
           //alert (root);
           return root.slice(0, root.length-1);

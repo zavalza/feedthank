@@ -11,6 +11,7 @@ Session.set('coverId', null);
 
 Meteor.subscribe('allFeedthanks');
 Meteor.subscribe('allImages');
+Meteor.subscribe('allProfiles');
 
 
       return SEO.config({

@@ -8,6 +8,9 @@
     }});
 
   this.route('publicFeedthank', {path:'/f/:_id', 
+    waitOn : function () {
+        return Meteor.subscribe('publicFeedthank', this.params._id);
+    },
     data:function(){
 
    return Feedthanks.findOne({_id:this.params._id});
@@ -53,6 +56,9 @@
   });
 
   this.route('privateFeedthank', {path:'/fp/:privateId',
+    waitOn : function () {
+        return Meteor.subscribe('privateFeedthank', this.params.privateId);
+    },
    data:function(){
 
    return Feedthanks.findOne({privateId:this.params.privateId});

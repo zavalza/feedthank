@@ -3,6 +3,10 @@ Template.editFeedthank.rendered = function()
 
   //hide edite from other users? make isPublic:false
 
+  //Reset images to show
+  Session.set('arrayOfImgIds',[]);
+  Session.set('arrayOfMeaningImg',[]);
+  Session.set('coverId', null);
 
 
   //datimepicker package

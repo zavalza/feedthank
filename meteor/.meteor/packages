@@ -9,7 +9,6 @@ accounts-base
 accounts-oauth
 accounts-ui
 cfs:standard-packages
-cfs:gridfs
 iron:router
 bootstrap3-less
 less
@@ -21,6 +20,6 @@ rajit:bootstrap3-datepicker
 accounts-facebook
 manuelschoebel:ms-seo
 spiderable
-cfs:filesystem
 cfs:s3
 http
+cfs:gridfs@=0.0.27

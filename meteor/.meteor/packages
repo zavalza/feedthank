@@ -19,7 +19,8 @@ tsega:bootstrap3-datetimepicker
 rajit:bootstrap3-datepicker
 accounts-facebook
 manuelschoebel:ms-seo
-spiderable
 cfs:s3
 http
 cfs:gridfs@=0.0.27
+spiderable
+cfs:graphicsmagick

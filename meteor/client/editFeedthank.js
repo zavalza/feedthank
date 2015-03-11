@@ -93,7 +93,7 @@ Template.editFeedthank.events({
 
   },
 
-  'load #title':function(evt, tmpl){
+  'blur #title':function(evt, tmpl){
      FB.XFBML.parse();
   },
        

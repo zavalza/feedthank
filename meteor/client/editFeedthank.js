@@ -74,6 +74,7 @@ Template.editFeedthank.events({
   'load #coverImgInput':function(evt, tmpl){
     document.getElementById('waitCover').style.height='0px';
      document.getElementById('waitCover').style.visibility='hidden';
+     //update send button when image is ready
      FB.XFBML.parse();
   },
 

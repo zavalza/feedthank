@@ -16,6 +16,13 @@ Template.editFeedthank.rendered = function()
        Meteor.call('updateWhen', feedthankId, document.getElementById('when').value )
     });
 
+  //fb send callback
+  var message_send_callback = function(url) {
+  console.log("message_send_callback");
+  console.log(url);
+  };  
+  FB.Event.subscribe('message.send', message_send_callback);
+
 }
 
 Template.reason.rendered = function()
@@ -82,13 +89,16 @@ Template.editFeedthank.events({
     var newTitle = document.getElementById('title').value;
      var url = document.getElementById('sendFb').value;
         
-      Meteor.call('updateTitle', this._id, newTitle, url, function(error, result){
-            FB.XFBML.parse();
-          });
+      Meteor.call('updateTitle', this._id, newTitle, url);
+
+  },
+
+  'load #title':function(evt, tmpl){
+     FB.XFBML.parse();
+  },
        
      
-       
-  },
+
 
 
   'click .newReason' : function(evt, tmpl){

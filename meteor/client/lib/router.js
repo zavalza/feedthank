@@ -47,8 +47,8 @@
           'type':'article',
           'image': imageUrl,
           'image:type':'image/jpeg',
-          'image:width':'640',
-          'image:height':'442'
+          'image:width':'630',  //these fields are necessary for og sharing to work first time
+          'image:height':'630'
         }
       });
     }
@@ -95,8 +95,8 @@
           'type':'article',
           'image': imageUrl,
           'image:type':'image/jpeg',
-          'image:width':'640',
-          'image:height':'442'
+          'image:width':'630', //these fields are necessary for og sharing to work first time
+          'image:height':'630'
         }
       });
     }

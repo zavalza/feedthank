@@ -10,9 +10,15 @@ var createThumb = function(fileObj, readStream, writeStream) {
     }));
 
   
+  //enlarge if it less than 200x200px
+
+  //keep  1.91:1 aspect ratio
+  //gm(readStream, fileObj.name()).resize('191', '630 !').stream().pipe(writeStream);
+  // force image to a 1200 x 630 image just if they are larger than that
+  //probably we need to store two images, one with dimensions of cover and other with send squere dimensions
+  //force square dimensions in order to work with send
+  gm(readStream, fileObj.name()).resize('630', '630 !').stream().pipe(writeStream);
   
-  // Transform the image into a 960 * 720 px image just if they are larger than that
-  gm(readStream, fileObj.name()).resize('960', '720 ^').stream().pipe(writeStream);
 };
 
 var message="Tu imagen es muy grande, sube una con menos de 5MB"

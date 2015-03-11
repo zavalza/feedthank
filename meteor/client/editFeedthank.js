@@ -63,10 +63,7 @@ Template.editFeedthank.events({
         Session.set('coverId', im._id);        //update db
         var url = document.getElementById('sendFb').value;
         
-        Meteor.call('updateCover', feedthankId, im._id, url, function(error, result){
-    
-            FB.XFBML.parse();
-        });
+        Meteor.call('updateCover', feedthankId, im._id, url);
       
 
       }   
@@ -77,6 +74,7 @@ Template.editFeedthank.events({
   'load #coverImgInput':function(evt, tmpl){
     document.getElementById('waitCover').style.height='0px';
      document.getElementById('waitCover').style.visibility='hidden';
+     FB.XFBML.parse();
   },
 
   'change #title' : function(evt, tmpl){

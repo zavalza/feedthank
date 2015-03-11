@@ -1,6 +1,6 @@
 <template name="feedthank">
 <div class="row">
-	<h1 class="text-center">{{title}}</h1>
+	<h1 class="text-center"><b>{{title}}</b></h1>
 </div>
 <div class="row">
 	<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
@@ -16,7 +16,7 @@
 	</div>
 </div>
 <div class="row">
-     <div class="col-md-10 col-md-offset-1">
+     <div class="col-md-8 col-md-offset-2">
       <h3 class="text-center">¿Por qué te dedico este platillo?</h3>
       <div class="row">
      	{{#each reasons}}
@@ -34,24 +34,24 @@
 </template>
 
 <template name="reason">
-  <div class="col-md-10">
-    {{text}}
-  </div>
-  <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
+   <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
     {{#each image picture}}
       <img class="img-responsive" src="{{url}}">
     {{/each}}
   </div>
+  <div class="col-md-10">
+    <p>{{text}}</p>
+  </div>
 </template>
 
 <template name="meaning">
-<div class="col-md-10">
-  {{text}}
-  <br/>
-</div>
-<div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
+  <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
   {{#each image picture}}
     <img class="img-responsive" src="{{url}}">
   {{/each}}
+</div>
+<div class="col-md-10">
+  <p>{{text}}</p>
+  <br/>
 </div>
 </template>

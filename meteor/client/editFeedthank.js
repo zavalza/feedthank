@@ -25,7 +25,7 @@ Template.editFeedthank.rendered = function()
 
 }
 
-Template.reason.rendered = function()
+Template.reasonInput.rendered = function()
 {
     //Show all placeholders
   $("textarea").each(function(){
@@ -34,7 +34,7 @@ Template.reason.rendered = function()
     });
 }
 
-Template.meaning.rendered = function()
+Template.meaningInput.rendered = function()
 {
     //Show all placeholders
   $("textarea").each(function(){
@@ -152,7 +152,7 @@ Template.editFeedthank.events({
   });
 
 
-Template.reason.events({
+Template.reasonInput.events({
   'click #reasonImgInput' : function(evt, tmpl){
     evt.preventDefault();
  var imgFile = tmpl.find('.reasonImg');
@@ -208,7 +208,7 @@ Template.reason.events({
   },
 })
 
-Template.meaning.events({
+Template.meaningInput.events({
 
    'click #meaningImgInput' : function(evt, tmpl){
     evt.preventDefault();
@@ -289,6 +289,21 @@ Template.meaning.events({
         }
     });
 
+      Template.reasonInput.helpers({
+      image: function(ids)
+        {
+          if (typeof (ids) == 'object')
+          return Images.find({_id:{$in: ids}});
+          else
+          {
+            //alert(typeof (ids)) string
+            return Images.find({_id:ids})
+          }
+          
+        },
+    })
+
+
     Template.reason.helpers({
       image: function(ids)
         {
@@ -303,7 +318,21 @@ Template.meaning.events({
         },
     })
 
-    Template.meaning.helpers({
+    Template.meaningInput.helpers({
+      image: function(ids)
+        {
+          if (typeof (ids) == 'object')
+          return Images.find({_id:{$in: ids}});
+          else
+          {
+            //alert(typeof (ids)) string
+            return Images.find({_id:ids})
+          }
+          
+        },
+    })
+
+   Template.meaning.helpers({
       image: function(ids)
         {
           if (typeof (ids) == 'object')

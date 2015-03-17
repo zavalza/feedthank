@@ -63,6 +63,17 @@
 
    return Feedthanks.findOne({privateId:this.params.privateId});
     },
+
+    onBeforeAction: function () {
+      if (!Meteor.user()) {
+        // render the login template but keep the url in the browser the same
+       this.render('privateLogin');
+        }
+        else
+        {
+        this.next();
+        }
+      },
         onAfterAction: function() {
       var feedthank, image, imageUrl;
 

@@ -1,5 +1,5 @@
 // Put your URL below, no "?_escaped_fragment_=" necessary
-var url = "http://feedthank.com/fp/h7XRNZBKLyQe6e2FD'";
+var url = "http://feedthank.com/fp/6mb2uPZj39YipMfCZ";
 var page = require('webpage').create();
  
 console.log('Loading page...');

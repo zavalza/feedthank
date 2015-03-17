@@ -17,11 +17,11 @@ Template.editFeedthank.rendered = function()
     });
 
   //fb send callback
-  var message_send_callback = function(url) {
+  /*var message_send_callback = function(url) {
   console.log("message_send_callback");
   console.log(url);
   };  
-  FB.Event.subscribe('message.send', message_send_callback);
+  FB.Event.subscribe('message.send', message_send_callback);*/
 
 }
 
@@ -90,15 +90,12 @@ Template.editFeedthank.events({
      var url = document.getElementById('sendFb').value;
         
       Meteor.call('updateTitle', this._id, newTitle, url);
-
   },
 
-  'blur #title':function(evt, tmpl){
+  'load #title': function(evt, tmpl){
      FB.XFBML.parse();
-  },
+   },
        
-     
-
 
 
   'click .newReason' : function(evt, tmpl){

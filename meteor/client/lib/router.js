@@ -7,7 +7,7 @@
    return Feedthanks.findOne({_id:currentFeedthank});
     }});
 
-  this.route('publicFeedthank', {path:'/f/:_id', 
+  this.route('feedthank', {path:'/f/:_id', 
     waitOn : function () {
         return Meteor.subscribe('publicFeedthank', this.params._id);
     },

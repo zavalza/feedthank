@@ -19,7 +19,7 @@
 <div class="thumbnail" style="z-index: 5; -webkit-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
 	-moz-box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);
 	box-shadow: 5px 5px 5px 0px rgba(15,15,15,0.75);">
-	<a href="{{pathFor 'publicFeedthank'}}">
+	<a href="{{pathFor 'feedthank'}}">
 		{{#each image cover}}
 		<img  style="height: 200px; widht:200px;" class="img-responsive" src="{{url}}">
 		{{else}}
@@ -28,7 +28,7 @@
 	</a>
 	<span class="thumbText" style="display:inline-block;">
 		<p style="font-size:16px;" class="text-center"><b>
-			<a href="{{pathFor 'publicFeedthank'}}">
+			<a href="{{pathFor 'feedthank'}}">
 				{{#if title}}
 				{{title}}
 				{{else}}

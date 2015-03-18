@@ -2,7 +2,7 @@
 Meteor.methods({
 	newFeedthank:function(userId){
 		privateId = Random.id();
-		var id = Feedthanks.insert({'privateId':privateId,'authorId':userId, 'reasons':[{}],'meanings':[{}]});
+		var id = Feedthanks.insert({'privateId':privateId,'authorId':userId, 'reasons':[{}],'meanings':[{}], 'timestamp': new Date(),});
 		return id;
 	},
 

@@ -47,6 +47,11 @@ Meteor.methods({
 	   return future.wait();
 	},
 
+	updateGuests:function(id, userId){
+		console.log('updating guests of feedthank '+id+ ' with guest '+userId);
+		Feedthanks.update({_id:id}, {$addToSet: { 'guests': userId}});
+	},
+
 	addReason:function(id){
 		console.log('adding reason to feedthank '+id);
 		Feedthanks.update({_id:id},{$push:{'reasons':{}}});

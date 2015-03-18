@@ -54,8 +54,12 @@
 						<b>Para:&nbsp;</b>
 					</div>
 					<div class="col-md-9">
-						{{#each user authorId}}
+						{{#each guests}}
+						{{#each user this}}
 						<a href="#"><img class="btn img-responsive" width="60" src="{{profile.picture}}"></a>
+						{{/each}}
+						{{else}}
+					    Un invitado especial
 						{{/each}}
 					</div>
 				</div>

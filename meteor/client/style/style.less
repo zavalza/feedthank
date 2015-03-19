@@ -9,8 +9,18 @@
 @import "variables_fontawesome.import.less";
 
 
-//@import url(http://fonts.googleapis.com/css?family=Dosis:500);
-//@import url(http://fonts.googleapis.com/css?family=Lato:400,900);
+/* Import fonts*/
+@font-face {
+    font-family: AlwaysInMyHeart;
+    src: url(fonts/AlwaysInMyHeart.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: SimplyGlamorous;
+    src: url(fonts/SimplyGlamorous.ttf) format("truetype");
+}
+
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:400,100);
 
 /* CSS declarations go here */
 
@@ -18,10 +28,13 @@ body {
 	z-index: 1;
 	height:100%;
 	background:#f1f1f1;
-	line-height: 1.5em;
-	font-size:14px;
-	font-family: Helvetica, Arial, sans-serif;
+	font-size:16px;
+	font-family: Josefin Sans;
 	font-weight: normal;
+}
+
+h1,h2,h3 {
+	font-family: AlwaysInMyHeart;
 }
 
 p{

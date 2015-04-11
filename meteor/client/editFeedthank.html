@@ -34,7 +34,7 @@
       {{else}}
       <div class="row">
         <div class="col-md-10">
-          <h4><label>Crea tu invitación a comer</label></h4>
+          <h4><label>Cuenta la historia detrás de tu platillo</label></h4>
           <input type="text" class="form-control text-center" id="title" placeholder="El título de mi Feedthank" value={{title}}>
           {{#each reasons}}
           {{>reasonInput}}
@@ -76,7 +76,7 @@
 </div>
 <div class="row">
   <div class="col-md-10">
-    <textarea class="form-control" name="reasonText" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?" value={{text}}></textarea>
+    <textarea class="form-control" rows="5" name="reasonText" placeholder="Un momento con tu invitado, un ingrediente secreto ¿qué significa este platillo?" value={{text}}></textarea>
     <br/>
   </div>
 </div>

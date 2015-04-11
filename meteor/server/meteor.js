@@ -2,7 +2,7 @@
 Meteor.methods({
 	newFeedthank:function(userId){
 		privateId = Random.id();
-		var id = Feedthanks.insert({'privateId':privateId,'authorId':userId, 'reasons':[{}],'meanings':[{}], 'timestamp': new Date(),});
+		var id = Feedthanks.insert({'privateId':privateId,'authorId':userId, 'timestamp': new Date(),});
 		return id;
 	},
 
@@ -62,9 +62,13 @@ Meteor.methods({
 		Feedthanks.update({_id:id},{$push:{'meanings':{}}});
 	},
 
-	updateReasons:function(id, arrayOfReasons){
-		console.log('updating reasons of feedthank '+id);
-		Feedthanks.update({_id:id},{$set:{'reasons':arrayOfReasons}})
+	updateReasons:function(feedthankId, imgId, text){
+		console.log('updating reasons of feedthank '+feedthankId);
+		var reasonDoc = {
+			picture: imgId,
+			text: text
+		};
+		Feedthanks.update({_id:feedthankId},{$push:{'reasons':reasonDoc}});
 	},
 
 	updateMeanings:function(id, arrayOfMeanings){

@@ -19,6 +19,8 @@ Template.editFeedthank.rendered = function()
        Meteor.call('updateWhen', feedthankId, document.getElementById('when').value )
     });
 
+
+
   //fb send callback
   /*var message_send_callback = function(url) {
   console.log("message_send_callback");
@@ -151,62 +153,30 @@ Template.reasonInput.events({
  imgFile.click();
 },
 
-  'change .reasonImg':function(evt, tmpl){
+  'change .reasonInput':function(evt, tmpl){
     //alert('reasonImg');
      Session.set('waiting', true);
-    var feedthankId = document.getElementById('cover').name;
-    var images = document.getElementsByName('reasonImg');
-    var arrayOfImgIds = Session.get('arrayOfImgIds');
-    for (j = 0; j < images.length; j++)
-    {
-       var image = images[j].value;
-       if(image == evt.target.value )
-       {
-        //alert(image)
-          var error = false;
-          FS.Utility.eachFile(evt, function(file) {
-        im = Images.insert(file, function (err, fileObj) {
-          //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-          if(err){
-            error = true;
-          }
-        });
-        if(!error)
-        {
-          arrayOfImgIds.splice(j,1,im._id);
+    var feedthankId = document.getElementById('title').name;
+    var reasonText = document.getElementById('reasonText').value;
+    console.log(feedthankId);
+    FS.Utility.eachFile(evt, function(file) {
+        im = Images.insert(file, function (err, fileObj) {});
           var url = document.getElementById('sendFb').value;   
           Meteor.call('updateCover', feedthankId, im._id, url);
-        } 
-         });
-       }
-    }
-    
-    Session.set('arrayOfImgIds', arrayOfImgIds);
+          Meteor.call('updateReasons', feedthankId, im._id, reasonText,function(err, result){
+            if(!err)
+            {
+             
+               Session.set('waiting', false);
+            }
+          });
+    });
   },
 
     'load #reasonImgInput':function(evt, tmpl){
       Session.set('waiting', false);
      //update send button when image is ready
      FB.XFBML.parse();
-  },
-
- 'change .reason':function(evt, tmpl){
-  //alert('allReason')
-    var texts = document.getElementsByName('reasonText');
-    var arrayOfReasons = [];
-    var arrayOfImgIds = Session.get('arrayOfImgIds');
-
-
-    for(i = 0; i < texts.length; i++)
-    {
-
-      var text = texts[i].value;
-      var picture= arrayOfImgIds[i];
-        arrayOfReasons.push({'text':text,'picture':picture});
-
-    }
-    var feedthankId = document.getElementById('cover').name;
-    Meteor.call('updateReasons', feedthankId, arrayOfReasons);
   },
 })
 

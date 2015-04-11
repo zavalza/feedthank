@@ -4,7 +4,7 @@
 <div class="row">
   <br/>
   <br/>
-  <div class="col-md-6 col-md-offset-1">
+  <div class="col-md-8 col-md-offset-2">
     <form class="form col-md-10 col-md-offset-1">
        <input class="hidden" type="file" id="cover" name="{{_id}}"><br>
        <div style="visibility:hidden;  position:absolute; left:0px; top:0px;" id="picker">
@@ -35,13 +35,11 @@
       <div class="row">
         <div class="col-md-10">
           <h4><label>Cuenta la historia detrás de tu platillo</label></h4>
-          <input type="text" class="form-control text-center" id="title" placeholder="El título de mi Feedthank" value={{title}}>
-          {{#each reasons}}
+          <input type="text" name="{{_id}}" class="form-control text-center" id="title" placeholder="El título de mi Feedthank" value={{title}}>
           {{>reasonInput}}
+          {{#each reasons}}
+          {{>reason}}
           {{/each}}
-        </div>
-        <div class="col-xs-12">
-          <a href="#" class="newReason">+ Añadir texto/imagen</a>
         </div>
       </div>
     <div class="row text-center">
@@ -55,52 +53,32 @@
 </div>
 </template>
 <template name="reasonInput">
-<div class="reason">
+<div class="reasonInput">
 <div class="row">
   <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-    <input id={{picture}} class="hidden reasonImg" type="file" name="reasonImg">
-    {{#each image picture}}
-    <a href="#">
-      <img id="reasonImgInput" class="img-responsive" src="{{url}}">
-    </a>
-    {{else}}
-    <a href="#">
-      {{#if waiting}}
-      <img id="wait" class="img-responsive" src="load.gif">
-      {{else}}
-      <img id="reasonImgInput" class="img-responsive" src="photo.png">
+     <input class="hidden reasonImg" type="file" name="reasonImg">
+     {{#if waiting}}
+     <img class="img-responsive" src="load.gif">
+     {{else}}
+      <img id="reasonImgInput" class="btn img-responsive" src="photo.png">
       {{/if}}
-    </a>
-    {{/each}}
   </div>
 </div>
 <div class="row">
-  <div class="col-md-10">
-    <textarea class="form-control" rows="5" name="reasonText" placeholder="Un momento con tu invitado, un ingrediente secreto ¿qué significa este platillo?" value={{text}}></textarea>
+    <textarea id="reasonText" class="form-control" rows="5" name="reasonText" placeholder="Un momento con tu invitado, un ingrediente secreto ¿qué significa este platillo?"></textarea>
     <br/>
-  </div>
 </div>
 </div>
 </template>
-<template name="meaningInput">
-<div class="meaning">
-<div class="col-md-10">
-  <textarea class="form-control" name="meaningText"  placeholder="Una historia, un ingrediente especial, un esfuerzo único ¿Qué hace diferente a este platillo?" value={{text}}></textarea>
-  <br/>
-</div>
-<div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
-  <img id="waitMeaningImg" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
-  <input id={{picture}} class="hidden meaningImg" type="file" name="meaningImg">
-  {{#each image picture}}
-  <a href="#">
-    <img id="meaningImgInput" class="img-responsive" src="{{url}}">
-  </a>
-  {{else}}
-  <a href="#">
-    <img id="meaningImgInput" class="img-responsive" src="photo.png">
-  </a>
-  {{/each}}
-</div>
+<template name="reason">
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+    {{#each image picture}}
+    <a href="{{url}}" id="my-lightbox" data-toggle="lightbox" data-gallery="multiimages" data-title="People walking down stairs">
+        <img src="{{url}}" alt="Cargando..." class="img-responsive" />
+    </a>
+    {{/each}}
+  </div>
 </div>
 </template>
 <!--div class="input-append date">

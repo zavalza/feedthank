@@ -24,3 +24,4 @@ http
 cfs:gridfs@=0.0.27
 spiderable
 cfs:graphicsmagick
+tsega:bootstrap3-lightbox

@@ -8,6 +8,8 @@ Session.set('arrayOfImgIds',[]);
 Session.set('arrayOfMeaningImg',[]);
 Session.set('currentFeedthank', null);
 Session.set('coverId', null);
+Session.set('sendFeedthank', false);
+Session.set('waiting', false);
 
 Meteor.subscribe('allFeedthanks');
 Meteor.subscribe('allImages');

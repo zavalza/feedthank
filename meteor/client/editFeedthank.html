@@ -1,89 +1,63 @@
 <template name="editFeedthank">
+<br/>
+<br/>
+<div class="row">
   <br/>
   <br/>
-  <div class="row editFeedthank">
-    <div class="col-md-6 col-md-offset-2">
-      <div class="panel panel-default box paperEffect">
-        <div class="panel-body">
-          <form class="form col-md-10 col-md-offset-1 ">
-            <div class="form-group">
-               <input type="text" class="form-control text-center" id="title" placeholder="El título de mi dedicatoria" value={{title}}>
-              <div class="row">
-                <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-                  <img id="waitCover" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
-                  {{#each image cover}}
-                  <a href="#">
-                    <img id="coverImgInput" class="img-responsive" src="{{url}}">
-                  </a>
-                  {{else}}
-                  <a href="#">
-                    <img id="coverImgInput" class="img-responsive" src="photo.png">
-                  </a>
-                  {{/each}}
-                </div>
-              </div>
-              <input class="hidden" type="file" id="cover" name="{{_id}}"><br>
-              <div class="row">
-                <div class="col-md-10">
-                  <h3><label>¿Por qué te dedico este platillo?</label></h3>
-                  {{#each reasons}}
-                  {{>reasonInput}}
-                  {{/each}}
-                </div>
-                <div class="col-xs-12">
-                  <a href="#" class="newReason">+ Añadir texto/imagen</a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-10">
-                  <h3><label>¿Por qué es especial este platillo?</label></h3>
-                  {{#each meanings}}
-                  {{>meaningInput}}
-                  {{/each}}
-                  
-                  <div class="col-xs-12">
-                    <a href="#" class="newMeaning">+ Añadir texto/imagen</a>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8">
-                  <h3><label>¿Cuándo es la cita? </label></h3>
-                  <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' id="when" class="form-control" placeholder="Fecha y hora. Da click al icono." value={{when}}>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8">
-                  <h3><label>Te espero aquí:</label></h3>
-                  <input type="text" class="form-control" id="place" placeholder="Nombre del lugar">
-                </div>
-              </div>
-              <div class="row">
-                <ul class="pager">
-                  <input id="sendFb" type="text" value="{{rootURL}}{{pathFor 'privateFeedthank'}}" hidden>
-                  <div class="fb-send" data-href="{{rootURL}}{{pathFor 'privateFeedthank'}}" data-colorscheme="light" data-ref="feedEdit"></div>
-                  <!--<a class="btn btn-lg btn-success fbSend">Manda tu dedicatoria</a>-->
-                </ul>
-              </div>
-            </div>
-          </form>
+  <div class="col-md-6 col-md-offset-1">
+    <form class="form col-md-10 col-md-offset-1">
+       <input class="hidden" type="file" id="cover" name="{{_id}}"><br>
+       <div style="visibility:hidden;  position:absolute; left:0px; top:0px;" id="picker">
+        <h4><label>Los datos de la cita, solo los invitados los pueden ver</label></h4>
+   <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class='input-group date' id='datetimepicker1'>
+            <input type='text' id="when" class="form-control" placeholder="Fecha y hora de la cita. Da click al icono." value={{when}}>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+          </span>
         </div>
       </div>
     </div>
   </div>
+      {{#if sendFeedthank}}
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <input type="text" class="form-control" id="place" placeholder="Nombre del lugar">
+      </div>
+    </div>
+<div class="row text-center">
+        <div class="fb-send" data-href="{{rootURL}}{{pathFor 'privateFeedthank'}}" data-colorscheme="light" data-ref="feedEdit"></div>
+        <br/>
+         <a class="btn btn-md btn-warning backToEdit">Atrás</a>
+    </div>
+    <br/>
+      {{else}}
+      <div class="row">
+        <div class="col-md-10">
+          <h4><label>Crea tu invitación a comer</label></h4>
+          <input type="text" class="form-control text-center" id="title" placeholder="El título de mi Feedthank" value={{title}}>
+          {{#each reasons}}
+          {{>reasonInput}}
+          {{/each}}
+        </div>
+        <div class="col-xs-12">
+          <a href="#" class="newReason">+ Añadir texto/imagen</a>
+        </div>
+      </div>
+    <div class="row text-center">
+       <input id="sendFb" type="text" value="{{rootURL}}{{pathFor 'privateFeedthank'}}" hidden>
+      <a class="btn btn-md btn-default sendFeedthank">Enviar</a>
+    </div>
+    <br/>
+    {{/if}}
+  </form>
+</div>
+</div>
 </template>
 <template name="reasonInput">
 <div class="reason">
-  <div class="col-md-10">
-    <textarea class="form-control" name="reasonText" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?" value={{text}}></textarea>
-    <br/>
-  </div>
-  <div class="col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
-    <img id="waitReasonImg" class="img-responsive" style="visibility:hidden; height:0px;" src="load.gif">
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
     <input id={{picture}} class="hidden reasonImg" type="file" name="reasonImg">
     {{#each image picture}}
     <a href="#">
@@ -91,13 +65,23 @@
     </a>
     {{else}}
     <a href="#">
+      {{#if waiting}}
+      <img id="wait" class="img-responsive" src="load.gif">
+      {{else}}
       <img id="reasonImgInput" class="img-responsive" src="photo.png">
+      {{/if}}
     </a>
     {{/each}}
   </div>
 </div>
+<div class="row">
+  <div class="col-md-10">
+    <textarea class="form-control" name="reasonText" placeholder="Una razón, un momento, un aniversario, ¿por qué tu invitado es especial?" value={{text}}></textarea>
+    <br/>
+  </div>
+</div>
+</div>
 </template>
-
 <template name="meaningInput">
 <div class="meaning">
 <div class="col-md-10">

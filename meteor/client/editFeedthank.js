@@ -7,14 +7,20 @@ Template.editFeedthank.rendered = function()
   Session.set('arrayOfImgIds',[]);
   Session.set('arrayOfMeaningImg',[]);
   Session.set('coverId', null);
+  Session.set('sendFeedthank', false);
+  Session.set('waiting', false);
 
 
   //datimepicker package
-  var picker = $('.date').datetimepicker({ sideBySide: true});
-  picker.on('change', function(e){
+  var picker = $('.date').datetimepicker({ sideBySide: false});
+  /*$('#datetimepicker1').change(function(){
+    var feedthankId = document.getElementById('cover').name;
+       Meteor.call('updateWhen', feedthankId, document.getElementById('when').value);
+  });*/
+  /*picker.on('change', function(e){
     var feedthankId = document.getElementById('cover').name;
        Meteor.call('updateWhen', feedthankId, document.getElementById('when').value )
-    });
+    });*/
 
   //fb send callback
   /*var message_send_callback = function(url) {
@@ -34,14 +40,6 @@ Template.reasonInput.rendered = function()
     });
 }
 
-Template.meaningInput.rendered = function()
-{
-    //Show all placeholders
-  $("textarea").each(function(){
-        $(this).focus();
-        $(this).blur();
-    });
-}
 
 Template.editFeedthank.events({
 
@@ -78,13 +76,6 @@ Template.editFeedthank.events({
   },
 
 
-  'load #coverImgInput':function(evt, tmpl){
-    document.getElementById('waitCover').style.height='0px';
-     document.getElementById('waitCover').style.visibility='hidden';
-     //update send button when image is ready
-     FB.XFBML.parse();
-  },
-
   'change #title' : function(evt, tmpl){
     var newTitle = document.getElementById('title').value;
      var url = document.getElementById('sendFb').value;
@@ -95,7 +86,30 @@ Template.editFeedthank.events({
   'load #title': function(evt, tmpl){
      FB.XFBML.parse();
    },
-       
+
+   'change #when': function(evt, tmpl){
+    alert('change')
+   },
+  
+  'click .sendFeedthank': function(evt, tmpl){
+    //alert('click');
+    Session.set('sendFeedthank', true);
+    var picker= document.getElementById('picker');
+     picker.style.position="static";
+    picker.style.visibility = 'visible';
+    //alert(Session.get('sendFeedthank'));
+  },
+
+  'click .backToEdit': function(evt, tmpl){
+    //alert('click');
+    Session.set('sendFeedthank', false);
+    var picker= document.getElementById('picker');
+    picker.style.position="absolute";
+    picker.style.left= "0px";
+    picker.style.top= "0px";
+    picker.style.visibility = 'hidden';
+    //alert(Session.get('sendFeedthank'));
+  },
 
 
   'click .newReason' : function(evt, tmpl){
@@ -105,22 +119,6 @@ Template.editFeedthank.events({
     arrayOfImgIds.push(null);
     Session.set('arrayOfImgIds', arrayOfImgIds);
   },
-
-  'click .newMeaning' : function(evt, tmpl){
-    var feedthankId = document.getElementById('cover').name;
-     Meteor.call('addMeaning', feedthankId);
-    var arrayOfMeaningImg = Session.get('arrayOfMeaningImg');
-    arrayOfMeaningImg.push(null);
-    Session.set('arrayOfMeaningImg', arrayOfMeaningImg);
-  },
-
-  'click #coverImgInput' : function(evt, tmpl){
-  document.getElementById('cover').click();
-},
-
- 'click .fbSend' : function(evt, tmpl){
-  document.getElementById('fbSendButton').click();
-},
 
     'click .publish': function(evt, tmpl)
     {
@@ -158,6 +156,8 @@ Template.reasonInput.events({
 
   'change .reasonImg':function(evt, tmpl){
     //alert('reasonImg');
+     Session.set('waiting', true);
+    var feedthankId = document.getElementById('cover').name;
     var images = document.getElementsByName('reasonImg');
     var arrayOfImgIds = Session.get('arrayOfImgIds');
     for (j = 0; j < images.length; j++)
@@ -177,12 +177,20 @@ Template.reasonInput.events({
         if(!error)
         {
           arrayOfImgIds.splice(j,1,im._id);
+          var url = document.getElementById('sendFb').value;   
+          Meteor.call('updateCover', feedthankId, im._id, url);
         } 
          });
        }
     }
     
     Session.set('arrayOfImgIds', arrayOfImgIds);
+  },
+
+    'load #reasonImgInput':function(evt, tmpl){
+      Session.set('waiting', false);
+     //update send button when image is ready
+     FB.XFBML.parse();
   },
 
  'change .reason':function(evt, tmpl){
@@ -205,62 +213,7 @@ Template.reasonInput.events({
   },
 })
 
-Template.meaningInput.events({
 
-   'click #meaningImgInput' : function(evt, tmpl){
-    evt.preventDefault();
- var imgFile = tmpl.find('.meaningImg');
- imgFile.click();
-},
-
-  'change .meaningImg':function(evt, tmpl){
-    //alert('meaningImg');
-    var images = document.getElementsByName('meaningImg');
-    var arrayOfMeaningImg = Session.get('arrayOfMeaningImg');
-    for (j = 0; j < images.length; j++)
-    {
-       var image = images[j].value;
-       if(image == evt.target.value )
-       {
-        //alert(image)
-          var error = false;
-          FS.Utility.eachFile(evt, function(file) {
-        im = Images.insert(file, function (err, fileObj) {
-          //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-          if(err){
-            error = true;
-          }
-        });
-        if(!error)
-        {
-          arrayOfMeaningImg.splice(j,1,im._id);
-        } 
-         });
-       }
-    }
-    
-    Session.set('arrayOfMeaningImg', arrayOfMeaningImg);
-  },
-
- 'change .meaning':function(evt, tmpl){
-  //alert('allReason')
-    var texts = document.getElementsByName('meaningText');
-    var arrayOfMeanings = [];
-    var arrayOfMeaningImg = Session.get('arrayOfMeaningImg');
-
-
-    for(i = 0; i < texts.length; i++)
-    {
-
-      var text = texts[i].value;
-      var picture= arrayOfMeaningImg[i];
-        arrayOfMeanings.push({'text':text,'picture':picture});
-
-    }
-    var feedthankId = document.getElementById('cover').name;
-    Meteor.call('updateMeanings', feedthankId, arrayOfMeanings);
-  },
-})
 
     Template.editFeedthank.helpers ({
 
@@ -283,6 +236,11 @@ Template.meaningInput.events({
           //root = root.replace('http://', 'www.');
           //alert (root);
           return root.slice(0, root.length-1);
+        },
+
+        sendFeedthank: function()
+        {
+          return Session.get('sendFeedthank');
         }
     });
 
@@ -298,6 +256,10 @@ Template.meaningInput.events({
           }
           
         },
+
+      waiting: function(){
+        return Session.get('waiting');
+      }
     })
 
 
@@ -315,30 +277,3 @@ Template.meaningInput.events({
         },
     })
 
-    Template.meaningInput.helpers({
-      image: function(ids)
-        {
-          if (typeof (ids) == 'object')
-          return Images.find({_id:{$in: ids}});
-          else
-          {
-            //alert(typeof (ids)) string
-            return Images.find({_id:ids})
-          }
-          
-        },
-    })
-
-   Template.meaning.helpers({
-      image: function(ids)
-        {
-          if (typeof (ids) == 'object')
-          return Images.find({_id:{$in: ids}});
-          else
-          {
-            //alert(typeof (ids)) string
-            return Images.find({_id:ids})
-          }
-          
-        },
-    })

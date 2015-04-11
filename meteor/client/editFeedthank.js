@@ -13,14 +13,11 @@ Template.editFeedthank.rendered = function()
 
   //datimepicker package
   var picker = $('.date').datetimepicker({ sideBySide: false});
-  /*$('#datetimepicker1').change(function(){
-    var feedthankId = document.getElementById('cover').name;
-       Meteor.call('updateWhen', feedthankId, document.getElementById('when').value);
-  });*/
-  /*picker.on('change', function(e){
+  
+  picker.on('change', function(e){
     var feedthankId = document.getElementById('cover').name;
        Meteor.call('updateWhen', feedthankId, document.getElementById('when').value )
-    });*/
+    });
 
   //fb send callback
   /*var message_send_callback = function(url) {

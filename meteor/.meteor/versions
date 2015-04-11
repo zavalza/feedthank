@@ -12,7 +12,7 @@ blaze-tools@1.0.2
 boilerplate-generator@1.0.2
 bootstrap3-less@0.0.0
 callback-hook@1.0.2
-cfs:access-point@0.1.43
+cfs:access-point@0.1.47
 cfs:base-package@0.0.28
 cfs:collection@0.5.3
 cfs:collection-filters@0.2.3
@@ -20,7 +20,7 @@ cfs:data-man@0.0.6
 cfs:file@0.1.16
 cfs:graphicsmagick@0.0.18
 cfs:gridfs@0.0.27
-cfs:http-methods@0.0.27
+cfs:http-methods@0.0.28
 cfs:http-publish@0.0.13
 cfs:power-queue@0.9.11
 cfs:reactive-list@0.0.9
@@ -89,7 +89,7 @@ spacebars-compiler@1.0.4
 spiderable@1.0.6
 templating@1.0.11
 tracker@1.0.5
-tsega:bootstrap3-datetimepicker@4.0.0_4
+tsega:bootstrap3-datetimepicker@3.1.3_3
 ui@1.0.5
 underscore@1.0.2
 url@1.0.3

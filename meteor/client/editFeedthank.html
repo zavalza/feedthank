@@ -16,20 +16,18 @@
             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
           </span>
         </div>
-      </div>
-    </div>
-  </div>
-      {{#if sendFeedthank}}
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
+      
+
         <input type="text" class="form-control" id="place" placeholder="Nombre del lugar">
-      </div>
-    </div>
+     </div>
 <div class="row text-center">
         <div class="fb-send" data-href="{{rootURL}}{{pathFor 'privateFeedthank'}}" data-colorscheme="light" data-ref="feedEdit"></div>
         <br/>
          <a class="btn btn-md btn-warning backToEdit">Atrás</a>
     </div>
+    </div>
+  </div>
+      {{#if sendFeedthank}}
     <br/>
       {{else}}
       <div class="row">

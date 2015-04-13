@@ -20,7 +20,10 @@ Template.editFeedthank.rendered = function()
        Meteor.call('updateWhen', feedthankId, document.getElementById('when').value )
     });
 
-
+  //fb send button
+  try {
+        FB.XFBML.parse();
+    }catch(e) {}   
 
   //fb send callback
   /*var message_send_callback = function(url) {
@@ -154,7 +157,7 @@ Template.reasonInput.events({
  imgFile.click();
 },
 
-  'click .saveReason':function(evt, tmpl){
+  'click .saveReason, .sendFeedthank':function(evt, tmpl){
     //alert('reasonImg');
     var feedthankId = document.getElementById('title').name;
     var reasonText = document.getElementById('reasonText').value;
@@ -187,15 +190,10 @@ Template.reasonInput.events({
 
     Template.editFeedthank.helpers ({
 
-        image: function(ids)
+        image: function(id)
         {
-          if (typeof (ids) == 'object')
-          return Images.find({_id:{$in: ids}});
-          else
-          {
             //alert(typeof (ids)) string
-            return Images.find({_id:ids})
-          }
+            return Images.find({_id:id})
           
         },
 
@@ -215,16 +213,11 @@ Template.reasonInput.events({
     });
 
       Template.reasonInput.helpers({
-      image: function(ids)
+      image: function(id)
         {
-          if (typeof (ids) == 'object')
-          return Images.find({_id:{$in: ids}});
-          else
-          {
             //alert(typeof (ids)) string
-            return Images.find({_id:ids})
-          }
-          
+            return Images.find({_id:id})
+
         },
 
       waiting: function(){
@@ -243,7 +236,7 @@ Template.reasonInput.events({
           
             //alert(typeof (ids)) string
             var image = Images.findOne({_id:imageId});
-            console.log(image)
+            //console.log(image)
             if(image)
               return image.url();
             else

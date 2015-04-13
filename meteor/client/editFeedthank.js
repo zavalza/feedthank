@@ -9,6 +9,7 @@ Template.editFeedthank.rendered = function()
   Session.set('coverId', null);
   Session.set('sendFeedthank', false);
   Session.set('waiting', false);
+   Session.set('reasonImgId', null);
 
 
   //datimepicker package
@@ -147,35 +148,37 @@ Template.editFeedthank.events({
 
 
 Template.reasonInput.events({
-  'click #reasonImgInput' : function(evt, tmpl){
+  'click .reasonImgInput' : function(evt, tmpl){
     evt.preventDefault();
  var imgFile = tmpl.find('.reasonImg');
  imgFile.click();
 },
 
-  'change .reasonInput':function(evt, tmpl){
+  'click .saveReason':function(evt, tmpl){
     //alert('reasonImg');
-     Session.set('waiting', true);
     var feedthankId = document.getElementById('title').name;
     var reasonText = document.getElementById('reasonText').value;
-    console.log(feedthankId);
-    FS.Utility.eachFile(evt, function(file) {
-        im = Images.insert(file, function (err, fileObj) {});
-          var url = document.getElementById('sendFb').value;   
-          Meteor.call('updateCover', feedthankId, im._id, url);
-          Meteor.call('updateReasons', feedthankId, im._id, reasonText,function(err, result){
-            if(!err)
-            {
-             
-               Session.set('waiting', false);
-            }
-          });
-    });
+    //console.log(feedthankId);
+    var url = document.getElementById('sendFb').value;
+    var imgId = Session.get('reasonImgId');
+    Meteor.call('updateCover', feedthankId, imgId, url);
+    Meteor.call('updateReasons', feedthankId, imgId, reasonText);
+    Session.set('reasonImgId', null);
+    document.getElementById('reasonText').value = "";
   },
 
-    'load #reasonImgInput':function(evt, tmpl){
-      Session.set('waiting', false);
+  'change .reasonImg':function(evt, tmpl){
+    //Session.set('waiting', true);
+     FS.Utility.eachFile(evt, function(file) {
+        im = Images.insert(file, function (err, fileObj) {});
+        Session.set('reasonImgId', im._id)
+        //console.log(im._id)
+      });
+  },
+
+    'load #savedImage':function(evt, tmpl){
      //update send button when image is ready
+     //Session.set('waiting', false);
      FB.XFBML.parse();
   },
 })
@@ -226,20 +229,25 @@ Template.reasonInput.events({
 
       waiting: function(){
         return Session.get('waiting');
+      },
+
+      reasonImgId: function(){
+        return Session.get('reasonImgId');
       }
     })
 
 
     Template.reason.helpers({
-      image: function(ids)
+      imageUrl: function(imageId)
         {
-          if (typeof (ids) == 'object')
-          return Images.find({_id:{$in: ids}});
-          else
-          {
+          
             //alert(typeof (ids)) string
-            return Images.find({_id:ids})
-          }
+            var image = Images.findOne({_id:imageId});
+            console.log(image)
+            if(image)
+              return image.url();
+            else
+              return "feedthank.jpg"
           
         },
     })

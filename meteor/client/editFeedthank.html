@@ -35,17 +35,26 @@
       <div class="row">
         <div class="col-md-10">
           <h4><label>Cuenta la historia detrás de tu platillo</label></h4>
-          <input type="text" name="{{_id}}" class="form-control text-center" id="title" placeholder="El título de mi Feedthank" value={{title}}>
-          {{>reasonInput}}
-          {{#each reasons}}
-          {{>reason}}
+          <input type="text" name="{{_id}}" class="form-control text-center" id="title" placeholder="El título de la historia" value={{title}}>
+            <br/>
+            <br/>
+          <div class="row">
+           {{#each reasons}}
+           <div class="col-md-4 col-xs-6">
+            {{>reason}}
+          </div>
+          {{else}}
+            Añade una foto o un texto para comenzar
+          <br/>
           {{/each}}
         </div>
-      </div>
-    <div class="row text-center">
+          {{>reasonInput}}
+        <div class="row text-center">
        <input id="sendFb" type="text" value="{{rootURL}}{{pathFor 'privateFeedthank'}}" hidden>
-      <a class="btn btn-md btn-default sendFeedthank">Enviar</a>
+      <a class="btn btn-md btn-default sendFeedthank">Historia lista!</a>
     </div>
+    </div>
+      </div>
     <br/>
     {{/if}}
   </form>
@@ -53,33 +62,28 @@
 </div>
 </template>
 <template name="reasonInput">
-<div class="reasonInput">
 <div class="row">
   <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
      <input class="hidden reasonImg" type="file" name="reasonImg">
-     {{#if waiting}}
-     <img class="img-responsive" src="load.gif">
-     {{else}}
-      <img id="reasonImgInput" class="btn img-responsive" src="photo.png">
-      {{/if}}
+      {{#each image reasonImgId}}
+       <img id="savedImage" alt="Cargando..." class="btn img-responsive reasonImgInput" src="{{url}}">
+      {{else}}
+        <img class="btn img-responsive reasonImgInput" src="photo.png">
+      {{/each}}
   </div>
 </div>
 <div class="row">
     <textarea id="reasonText" class="form-control" rows="5" name="reasonText" placeholder="Un momento con tu invitado, un ingrediente secreto ¿qué significa este platillo?"></textarea>
     <br/>
 </div>
+<div class="row text-center">
+<a class="btn btn-md btn-success saveReason">Añadir más fotos/texto</a>
 </div>
 </template>
 <template name="reason">
-<div class="row">
-  <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-    {{#each image picture}}
-    <a href="{{url}}" id="my-lightbox" data-toggle="lightbox" data-gallery="multiimages" data-title="People walking down stairs">
-        <img src="{{url}}" alt="Cargando..." class="img-responsive" />
+    <a href="{{imageUrl picture}}" data-toggle="lightbox" data-gallery="multiimages" data-title="{{text}}">
+        <img src="{{imageUrl picture}}" alt="Cargando..." class="img-responsive" />
     </a>
-    {{/each}}
-  </div>
-</div>
 </template>
 <!--div class="input-append date">
 <input value="dd-mm-yyyy" disabled>

@@ -19,21 +19,18 @@
 		{{/each}}
 	</div>
 </div>
+<br/>
+<br/>
 <div class="row">
-     <div class="col-md-8 col-md-offset-2">
-      <h3 class="text-center">¿Por qué te dedico este platillo?</h3>
-      <div class="row">
-     	{{#each reasons}}
-          {{>reason}}
-        {{/each}}
-       </div>
-       <h3 class="text-center">Esto es algo muy especial</h3>
-      <div class="row">
-        {{#each meanings}}
-           {{>meaning}}
-        {{/each}}
-      </div>
-     </div>
+  <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3">
+    <div class="row">
+     {{#each reasons}}
+           <div class="col-md-4 col-xs-6">
+            {{>reason}}
+          </div>
+      {{/each}}
+    </div>
+  </div>
  </div>
 </template>
 

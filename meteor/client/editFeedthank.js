@@ -116,20 +116,6 @@ Template.reasonInput.events({
             //alert(typeof (ids)) string
             return Images.find({_id:id})
           
-        },
-
-        rootURL: function()
-        {
-          //alert (document.URL)
-          var root =  Meteor.absoluteUrl();
-          //root = root.replace('http://', 'www.');
-          //alert (root);
-          return root.slice(0, root.length-1);
-        },
-
-        sendFeedthank: function()
-        {
-          return Session.get('sendFeedthank');
         }
     });
 

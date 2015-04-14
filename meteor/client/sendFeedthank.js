@@ -39,3 +39,14 @@ Template.sendFeedthank.events({
  }
 
 });
+
+Template.sendFeedthank.helpers({
+	  rootURL: function()
+        {
+          //alert (document.URL)
+          var root =  Meteor.absoluteUrl();
+          //root = root.replace('http://', 'www.');
+          //alert (root);
+          return root.slice(0, root.length-1);
+        },
+})

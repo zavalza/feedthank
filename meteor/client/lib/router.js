@@ -1,6 +1,11 @@
   Router.map(function() {
   this.route('pitch', {path:'/'});
   this.route('home', {path:'/home'});
+  this.route('sendFeedthank', {path:'/send', data: function(){
+     var currentFeedthank = Session.get('currentFeedthank');
+   return Feedthanks.findOne({_id:currentFeedthank});
+  }});
+
   this.route('editFeedthank', {path:'/edit', data:function(){
 
     var currentFeedthank = Session.get('currentFeedthank');

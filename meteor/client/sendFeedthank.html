@@ -1,0 +1,29 @@
+<template name="sendFeedthank">
+<br/>
+<br/>
+<div class="row">
+  <br/>
+  <br/>
+  <div class="col-md-8 col-md-offset-2">
+    <form class="form col-md-10 col-md-offset-1">
+       <input class="hidden" type="file" id="cover" name="{{_id}}"><br>
+        <h4><label>Los datos de la cita, solo los invitados los pueden ver</label></h4>
+   <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class='input-group date' id='datetimepicker1'>
+            <input type='text' id="when" class="form-control" placeholder="Fecha y hora de la cita. Da click al icono." value={{when}}>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+        <input type="text" class="form-control" id="place" placeholder="Nombre del lugar">
+     </div>
+<div class="row text-center">
+        <div class="fb-send" data-href="{{rootURL}}{{pathFor 'privateFeedthank'}}" data-colorscheme="light" data-ref="feedEdit"></div>
+        <br/>
+         <a class="btn btn-md btn-warning backToEdit">Atrás</a>
+    </div>
+    </div>
+</form>
+  </div>
+  </div>
+</template>

@@ -81,6 +81,11 @@ Meteor.methods({
 		Feedthanks.update({_id:id},{$set:{'when':newWhen}});
 	},
 
+	updateWhere:function(id, newWhere){
+		console.log('udpate where of '+id+' to '+newWhere);
+		Feedthanks.update({_id:id},{$set:{'where':newWhere}});
+	},
+
 	deleteCover:function(id, imgId){
 		console.log('Deleting cover '+ imgId + ' from feedthank '+id);
 		Feedthanks.update({_id:id},{$set:{'cover':null}});

@@ -3,34 +3,10 @@ Template.editFeedthank.rendered = function()
 
   //hide edite from other users? make isPublic:false
 
-  //Reset images to show
-  Session.set('arrayOfImgIds',[]);
-  Session.set('arrayOfMeaningImg',[]);
   Session.set('coverId', null);
-  Session.set('sendFeedthank', false);
   Session.set('waiting', false);
    Session.set('reasonImgId', null);
 
-
-  //datimepicker package
-  var picker = $('.date').datetimepicker({ sideBySide: false});
-  
-  picker.on('change', function(e){
-    var feedthankId = document.getElementById('cover').name;
-       Meteor.call('updateWhen', feedthankId, document.getElementById('when').value )
-    });
-
-  //fb send button
-  try {
-        FB.XFBML.parse();
-    }catch(e) {}   
-
-  //fb send callback
-  /*var message_send_callback = function(url) {
-  console.log("message_send_callback");
-  console.log(url);
-  };  
-  FB.Event.subscribe('message.send', message_send_callback);*/
 
 }
 
@@ -46,81 +22,31 @@ Template.reasonInput.rendered = function()
 
 Template.editFeedthank.events({
 
- 'change #cover' : function(evt, tmpl) {
-    document.getElementById('waitCover').style.visibility='visible';
-    document.getElementById('waitCover').style.height='100px';
-    var feedthankId = document.getElementById('cover').name;
-    if(Session.get('coverId')) //has already uploaded a image, delete it
-    {
-      Meteor.call('deleteCover',feedthankId, Session.get('coverId'));
-    }
-    //upload new Image   
-    var error = false;
-    FS.Utility.eachFile(evt, function(file) {
-      im = Images.insert(file, function (err, fileObj) {
-        //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-        if(err){
-          error = true;
-        }
-      });
-      if(!error)
-      {
-
-        //alert(EJSON.stringify(im));
-        //Show it
-        Session.set('coverId', im._id);        //update db
-        var url = document.getElementById('sendFb').value;
-        
-        Meteor.call('updateCover', feedthankId, im._id, url);
-      
-
-      }   
-    });
-  },
-
-
   'change #title' : function(evt, tmpl){
     var newTitle = document.getElementById('title').value;
      var url = document.getElementById('sendFb').value;
         
       Meteor.call('updateTitle', this._id, newTitle, url);
   },
-
-  'load #title': function(evt, tmpl){
-     FB.XFBML.parse();
-   },
-
-   'change #when': function(evt, tmpl){
-    alert('change')
-   },
   
   'click .sendFeedthank': function(evt, tmpl){
     //alert('click');
-    Session.set('sendFeedthank', true);
-    var picker= document.getElementById('picker');
-     picker.style.position="static";
-    picker.style.visibility = 'visible';
+    var feedthankId = document.getElementById('title').name;
+    var reasonText = document.getElementById('reasonText').value;
+    //console.log(feedthankId);
+    var url = document.getElementById('sendFb').value;
+    var imgId = Session.get('reasonImgId');
+
+    if((reasonText!="") || (imgId != null))
+    {
+    Meteor.call('updateCover', feedthankId, imgId, url);
+    Meteor.call('updateReasons', feedthankId, imgId, reasonText);
+    Session.set('reasonImgId', null);
+    document.getElementById('reasonText').value = "";
+    }
+    
+    Router.go('sendFeedthank');
     //alert(Session.get('sendFeedthank'));
-  },
-
-  'click .backToEdit': function(evt, tmpl){
-    //alert('click');
-    Session.set('sendFeedthank', false);
-    var picker= document.getElementById('picker');
-    picker.style.position="absolute";
-    picker.style.left= "0px";
-    picker.style.top= "0px";
-    picker.style.visibility = 'hidden';
-    //alert(Session.get('sendFeedthank'));
-  },
-
-
-  'click .newReason' : function(evt, tmpl){
-    var feedthankId = document.getElementById('cover').name;
-    Meteor.call('addReason', feedthankId);
-    var arrayOfImgIds = Session.get('arrayOfImgIds');
-    arrayOfImgIds.push(null);
-    Session.set('arrayOfImgIds', arrayOfImgIds);
   },
 
     'click .publish': function(evt, tmpl)
@@ -157,7 +83,7 @@ Template.reasonInput.events({
  imgFile.click();
 },
 
-  'click .saveReason, .sendFeedthank':function(evt, tmpl){
+  'click .saveReason':function(evt, tmpl){
     //alert('reasonImg');
     var feedthankId = document.getElementById('title').name;
     var reasonText = document.getElementById('reasonText').value;
@@ -179,11 +105,6 @@ Template.reasonInput.events({
       });
   },
 
-    'load #savedImage':function(evt, tmpl){
-     //update send button when image is ready
-     //Session.set('waiting', false);
-     FB.XFBML.parse();
-  },
 })
 
 

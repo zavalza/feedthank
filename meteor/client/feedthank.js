@@ -1,3 +1,8 @@
+
+/*Template.feedthank.rendered= function(){
+  document.getElementById('galleryImage').click();
+}*/
+
  Template.feedthank.helpers({
 
     image: function(ids)

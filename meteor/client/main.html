@@ -25,42 +25,87 @@
 	{{>navigation}}
 </body>
 <template name="pitch">
-<div class="top-section">
-<div>
-	<div  class="row">
-		<div style="margin-top:100px; padding:5px;" class="col-xs-offset-3 col-xs-6 text-center">
-			<h1 style="font-size:60px;">Dedica tus platillos contando una historia</h1>
-			<br/>
-			<!--<p>Expresa lo que significa cocinar para alguien con Feedthank</p>-->
-			<br/>
-			<button type="submit" class="btn-lg btn-default newFeedthank">Dedicar un platillo</button>
-			<br/><br/>
-		</div>
-	</div>
+<!-- Carousel -->
+<div id="homeCarousel" class="carousel slide">
+  <!-- Menu -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <!-- Items -->
+  <div class="carousel-inner">
+      <!-- Item 1 -->
+    <div class="item active">
+        <img src="background.jpg"/>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Amor a prueba de concinero</h1>
+          <p>Mira el primer platillo de Juan para su novia</p>
+          <p><a class="btn btn-large btn-default" href="#">Ver feedthank</a></p>
+        </div>
+      </div>
+    </div>
+      <!-- Item 2 -->
+    <div class="item">
+        <img src="background2.jpg"/>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Galletas para mis figuras</h1>
+          <p>Conoce la historia de Mariana y su familia</p>
+          <p><a class="btn btn-large btn-default" href="#">Ver feedthank</a></p>
+        </div>
+      </div>
+    </div>
+      <!-- Item 3 -->
+    <div class="item">
+        <img src="background3.jpg" />
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>¿A quién le cocinarás hoy?</h1>
+          <p>Invítalo a comer con Feedthank</p>
+          <p><a class="btn btn-large btn-default" href="#">Comienza ahora</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
 </div>
-</div>
-<div class="bottom-section">
-	<div class="row">
+ <h2 style="margin-left:1em;">Invita tus platillos contando una historia</h2>
+	<div class="row main-steps-row">
 		<div class="col-sm-4 text-center">
-			<img class="img-responsive center-block" src="step02.png" style="max-height:100px"/> 
-			<h1 class="highlight">Exprésate</h1>
-			<p class="col-xs-10 col-xs-offset-1">Crea tu invitación contando una historia</p>
-			<br/><br/><br/><br/>
+			<img class="img-responsive img-circle center-block" src="expresa.jpg" style="height:200px; width:200px;"/>
 		</div>
-		<div class="col-sm-4 text-center">
-			<img class="img-responsive center-block" src="step03.png" style="max-height:100px"/> 
-			<h1 class="highlight">Invita</h1>
-			<p class="col-xs-10 col-xs-offset-1">Envia tu invitación por mensaje privado de Facebook</p>
-			<br/><br/><br/><br/>
+		<div class="col-sm-6 main-steps-row-text">
+      <span class="main-steps-row-number">1.</span>
+			<span>Desde los ingredientes únicos hasta la ocasión especial que celebras, cuéntalo en tu invitación</span>
 		</div>
-		<div class="col-sm-4 text-center">
-			<img class="img-responsive center-block" src="step01.png" style="max-height:100px"/> 
-			<h1 class="highlight">Come</h1>
-			<p class="col-xs-10 col-xs-offset-1">Disfruta el significado de comer juntos</p>
-			<br/><br/><br/><br/>
-		</div>
-  	</div>
-</div>
+  </div>
+  <div class="row main-steps-row">
+    <div class="col-sm-4 text-center">
+      <img class="img-responsive img-circle center-block" src="invita.jpg" style="height:200px; width:200px;"/>
+    </div>
+    <div class="col-sm-6 main-steps-row-text">
+      <span class="main-steps-row-number">2.</span>
+      <span>Cuando todo esté listo, manda tu invitación por mensaje de Facebook</span>
+    </div>
+  </div>
+  <div class="row main-steps-row">
+    <div class="col-sm-4 text-center">
+      <img class="img-responsive img-circle center-block" src="come.jpg" style="height:200px; width:200px;"/>
+    </div>
+    <div class="col-sm-6 main-steps-row-text">
+      <span class="main-steps-row-number">3.</span>
+      <span>Disfruta el significado real de comer juntos</span>
+    </div>
+  </div>
+  <br/><br>
 <div class="copy">
 	<p class="text-center">&copy; 2015 Feedthank &nbsp; &nbsp; Contacto:hola@feedthank.com</p>
 </div>

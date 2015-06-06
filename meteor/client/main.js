@@ -5,6 +5,15 @@
   }
 });*/
 
+Template.pitch.rendered = function(){
+
+    $('#homeCarousel').carousel({
+        interval:6000,
+        pause: "false"
+    });
+}
+
+
   Template.pitch.events({
 
 	'click .newFeedthank' : function(evt, tmpl){

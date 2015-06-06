@@ -10,14 +10,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <!--<img class="btn img-responsive" width="100" src="logo.png">-->
-        <a href="{{pathFor 'pitch'}}"><h4>Feedthank</h4></a>    
+        <a href="{{pathFor 'pitch'}}"> <img class="btn img-responsive" width="100" src="logo.png"> </a>
     </div>
     
       <div class="navbar-collapse collapse h navbar-right">
         <ul class="nav navbar-nav">
           <li><a href="{{pathFor 'home'}}">Feedthanks</a></li>
-          <li><a href="" class="newFeedthank">Dedicar un platillo +</a></li>
+          <li><button class="newFeedthank">Dedica un platillo +</button></li>
            {{#if currentUser}}
           <li><a href="#" class="tryLogout">Salir</a></li>
           {{else}}

@@ -3,18 +3,23 @@
   <br/>
   <br/>
   <br/>
-<div class="row">
-	<h1 class="text-center"><b>{{title}}</b></h1>
+<div class="row text-center">
+	<h1><b>{{title}}</b></h1>
+	<button type="submit" class="btn btn-default openGallery">Ver feedthank</button>
 </div>
-<div id="reasons" class="row" style="margin-left:25%; margin-right:25%;">
- {{#each reasons}}
-  {{>reason}}
-{{else}}
-  <div class="text-center">
-  Esta historia está vacía =(.
-  </div>
-<br/>
-{{/each}}
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<div id="reasons">
+			{{#each reasons}}
+				{{>reason}}
+			{{else}}
+		  <div class="text-center">
+		  Esta historia está vacía =(.
+		  </div>
+		<br/>
+		{{/each}}
+		</div>
+	</div>
 </div>
 </template>
 

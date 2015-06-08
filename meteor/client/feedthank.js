@@ -1,7 +1,7 @@
 
-/*Template.feedthank.rendered= function(){
+Template.feedthank.rendered= function(){
   document.getElementById('galleryImage').click();
-}*/
+}
 
  Template.feedthank.helpers({
 
@@ -17,5 +17,11 @@
           
         },
 
+ })
+
+ Template.feedthank.events({
+  'click .openGallery': function(evt, tmpl){
+    document.getElementById('galleryImage').click();
+  }
  })
 

@@ -12,24 +12,26 @@
           <input type="text" name="{{_id}}" class="form-control text-center" id="title" placeholder="Ponle un título a tu invitación" value={{title}}>
             <br/>
             <h3><label>Cuenta la historia detrás de tu platillo</label></h3>
-            {{#if reasons}}
-            <span>Mira tu historia...</span>
-            {{/if}}
-            <div class="row">
-              {{#each reasons}}
-              <div class="col-md-4 col-xs-6">
-                {{>reason}}
-              </div>
-              {{/each}}
-            </div>
             <span>Añade una foto de las cosas o momentos que hagan especial tu platillo </span><a class="edit-feedthank-question-sign" href="#" title="Un momento con tu invitado, un ingrediente secreto ¿qué significa este platillo?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
           {{>reasonInput}}
-        <div class="row text-center">
-       <input id="sendFb" type="text" value="{{rootURL}}{{pathFor 'privateFeedthank'}}" hidden>
-    <br/>
-    <a class="btn btn-md btn-default sendFeedthank">Invitación lista!</a>
-    </div>
-    </div>
+          <div class="row text-center">
+            <input id="sendFb" type="text" value="{{rootURL}}{{pathFor 'privateFeedthank'}}" hidden>
+            <br/>
+            <a class="btn btn-md btn-default sendFeedthank">Invitación lista!</a>
+          </div>
+          {{#if reasons}}
+            <h3><label>Tu feedthank:</label></h3>
+          {{/if}}
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <div id="reasons">
+                {{#each reasons}}
+                    {{>reason}}
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     <br/>
   </form>
@@ -57,7 +59,7 @@
 </template>
 <template name="reason">
     <a id="galleryImage" href="{{imageUrl picture}}" data-toggle="lightbox" data-gallery="multiimages" data-title="{{text}}">
-        <img src="{{imageUrl picture}}" alt="Cargando..." class="img-responsive" />
+        <img src="{{imageUrl picture}}" alt="Cargando..." class="reason-image" />
     </a>
 </template>
 <!--div class="input-append date">

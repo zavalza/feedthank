@@ -1,7 +1,7 @@
  Template.home.helpers({
   feedthank: function()
   {
-    return Feedthanks.find({});
+    return Feedthanks.find({reasons: {$ne: null}});
   },
 
   image: function(ids)

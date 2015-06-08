@@ -1,24 +1,3 @@
-
-Template.feedthankThumbnail.rendered = function()
-{
-
-
-  var maxHeight = 0;
-  $('.thumbText').each(function(){
-        var h = $(this).height();
-        if(h > maxHeight)
-        {
-          //alert(h);
-          maxHeight = h;
-        }
-    });
-  $('.thumbText').each(function(){
-        $(this).css('height',maxHeight+2);
-    });
-
-}
-
-
  Template.home.helpers({
   feedthank: function()
   {

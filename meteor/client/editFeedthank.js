@@ -1,13 +1,10 @@
 Template.editFeedthank.rendered = function()
 {
-
   //hide edite from other users? make isPublic:false
 
   Session.set('coverId', null);
   Session.set('waiting', false);
-   Session.set('reasonImgId', null);
-
-
+  Session.set('reasonImgId', null);
 }
 
 Template.reasonInput.rendered = function()

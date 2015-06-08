@@ -8,24 +8,26 @@
     <form class="form col-md-10 col-md-offset-1">
       <div class="row">
         <div class="col-md-10">
-          <h4><label>Cuenta la historia detrás de tu platillo</label></h4>
-          <input type="text" name="{{_id}}" class="form-control text-center" id="title" placeholder="El título de la historia" value={{title}}>
+          <h3><label>Cocina para alguien e invítalo a comer con Feedthank</label></h3>
+          <input type="text" name="{{_id}}" class="form-control text-center" id="title" placeholder="Ponle un título a tu invitación" value={{title}}>
             <br/>
-            <br/>
-          <div class="row">
-           {{#each reasons}}
-           <div class="col-md-4 col-xs-6">
-            {{>reason}}
-          </div>
-          {{else}}
-            Añade una foto o un texto para comenzar
-          <br/>
-          {{/each}}
-        </div>
+            <h3><label>Cuenta la historia detrás de tu platillo</label></h3>
+            {{#if reasons}}
+            <span>Mira tu historia...</span>
+            {{/if}}
+            <div class="row">
+              {{#each reasons}}
+              <div class="col-md-4 col-xs-6">
+                {{>reason}}
+              </div>
+              {{/each}}
+            </div>
+            <span>Añade una foto de las cosas o momentos que hagan especial tu platillo </span><a class="edit-feedthank-question-sign" href="#" title="Un momento con tu invitado, un ingrediente secreto ¿qué significa este platillo?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
           {{>reasonInput}}
         <div class="row text-center">
        <input id="sendFb" type="text" value="{{rootURL}}{{pathFor 'privateFeedthank'}}" hidden>
-      <a class="btn btn-md btn-default sendFeedthank">Historia lista!</a>
+    <br/>
+    <a class="btn btn-md btn-default sendFeedthank">Invitación lista!</a>
     </div>
     </div>
       </div>
@@ -46,11 +48,11 @@
   </div>
 </div>
 <div class="row">
-    <textarea id="reasonText" class="form-control" rows="5" name="reasonText" placeholder="Un momento con tu invitado, un ingrediente secreto ¿qué significa este platillo?"></textarea>
+    <textarea id="reasonText" class="form-control" rows="5" name="reasonText" placeholder="Escribe algo sobre la foto"></textarea>
     <br/>
 </div>
 <div class="row text-center">
-<a class="btn btn-md btn-success saveReason">Añadir más fotos/texto</a>
+<a class="btn btn-md btn-success saveReason">Añadir más fotos</a>
 </div>
 </template>
 <template name="reason">
